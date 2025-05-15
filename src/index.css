@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+:root { /* Variables globales para modo claro (por defecto) */
+  /* Paleta de colores inspirada en Vercel */
+  --color-bg-primary: #fff;         /* Blanco (Fondo Principal) */
+  --color-bg-secondary: #f8f8f8;    /* Gris claro (Fondo Secundario) */
+  --color-bg-tertiary: #e0e0e0;    /* Gris más claro */
+  --color-text-primary: #000;         /* Negro (Texto Principal, Acentos) */
+  --color-text-secondary: #666;       /* Gris oscuro (Texto Secundario) */
+  --color-text-tertiary: #888;       /* Gris más claro */
+  --color-border: #ccc;           /* Gris claro para bordes */
+  --color-bg-light-section: #fff;   /* Blanco para secciones claras */
+  --color-accent: #0070f3;         /* Azul Vercel (Acento) */
+}
+
+/* Variables para modo oscuro (si deseas mantenerlo) */
+* .dark-mode {
+  --color-bg-primary: #000;
+  --color-bg-secondary: rgb(10,10,10);
+  --color-bg-tertiary: #2f2f2f;
+  --color-text-primary: rgb(234,237,237);
+  --color-text-secondary: rgb(161,161,161);
+  --color-text-tertiary: #4f4f4f;
+  --color-border: rgb(36,36,36);           /* Gris claro para bordes */
+  --color-bg-light-section: #1c1c1c; /* Un tono oscuro para secciones claras en modo oscuro */
+  --color-accent: #0070f3;         /* El acento se mantiene */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+.content {
+  margin-top: 80px;
+  /* o lo que mida tu navbar */
+}
