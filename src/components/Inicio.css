@@ -164,7 +164,7 @@
   box-shadow: 0 0 0 1px var(--color-accent2),
               0 0 15px rgba(var(--color-accent2),0.5),
               0 3px 5px rgba(0, 0, 0, 0.2);
-  background-color: #252525;
+  background-color: var(--color-bg-secondary);
   color: var(--color-accent2);
   text-shadow: 0 0 5px rgba(var(--color-accent), 0.5); /* Texto con glow */
 }

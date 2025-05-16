@@ -3,6 +3,8 @@ import './App.css'
 import NavBar from './components/navbar'
 import Inicio from './components/Inicio'
 import Tecnologias from './components/Tecnologias'
+import Proyectos from './components/Proyectos'
+
 function App() {
 
   return (
@@ -13,6 +15,7 @@ function App() {
           {/* Aquí iría el contenido principal de tu página */}
                 <Inicio />
                 <Tecnologias />
+                <Proyectos />
         </div>
       </main>
 
