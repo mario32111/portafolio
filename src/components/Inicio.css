@@ -1,0 +1,252 @@
+.inicio-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: var(--color-bg-primary);
+}
+
+.binary-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.binary-digit {
+  position: absolute;
+  color: rgba(var(--color-text-primary-rgb), 0.1); /* Usando opacidad con el color primario */
+  font-family: monospace;
+  animation: float-up 7s linear infinite;
+  user-select: none;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.container-inicio {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  z-index: 1;
+  position: relative;
+}
+
+/* Contenedor del marco y la foto */
+.foto-container {
+  position: relative;
+  width: fit-content; /* Ajusta el ancho al contenido */
+  margin: 0 auto; /* Centra el contenedor */
+}
+
+/* Marco que sobresale */
+.marco-foto {
+  position: absolute;
+  top: -15px; /* Sobresale 15px arriba */
+  left: -15px; /* Sobresale 15px a la izquierda */
+  width: calc(100%); /* Compensa el desplazamiento */
+  height: calc(100%); /* Compensa el desplazamiento */
+  border-radius: 5px; /* Un poco más grande que la foto */
+  border: 5px solid var(--color-border);
+  background-color: transparent;
+  z-index: -1; /* Para que quede detrás de la foto */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la foto */
+.inicio-foto {
+  position: relative; /* Necesario para el z-index */
+  width: 100%;
+  max-width: 400px;
+  min-width: 250px;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  border: 1px solid var(--color-border);
+  z-index: 1; /* Para que esté sobre el marco */
+  display: block; /* Elimina espacio inferior de img */
+}
+/* Efecto hover */
+.foto-container:hover .inicio-foto {
+  transform: translate(5px, -5px); /* Pequeño movimiento */
+}
+
+.foto-container:hover .marco-foto {
+  transform: translate(-5px, 5px); /* Movimiento opuesto para efecto 3D */
+}
+
+.typing-animation-container {
+  flex: 1;
+  min-width: 300px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.greeting {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+.name {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--color-text-primary);
+  margin: 0.5rem 0;
+  font-weight: 700;
+}
+
+.typing-animation {
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  color: var(--color-accent); /* Usando el color de acento para el texto de desarrollador */
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 1rem 0;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 0.15em;
+  background-color: var(--color-accent); /* Mismo color de acento para consistencia */
+  animation: blinking-cursor 0.75s step-end infinite;
+}
+
+@keyframes blinking-cursor {
+  from, to { background-color: transparent }
+  50% { background-color: var(--color-accent); }
+}
+
+.cv-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8em 1.8em;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: 4px; /* Más angular como ventana de terminal */
+  background-color: var(--color-bg-primary); /* Fondo oscuro como IDE */
+  border: 1px solid var(--color-border); /* Borde gris claro */
+  color: var(--color-accent); /* Verde de terminal clásico */
+  font-family: 'Courier New', monospace; /* Fuente tipo código */
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 1px var(--color-accent2), /* Borde verde tipo sintaxis */
+              0 0 10px rgba(var(--color-accent), 0.3); /* Glow verde */
+  text-transform: uppercase; /* Estilo comandos */
+  letter-spacing: 1px;
+}
+
+.cv-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--color-accent2),
+              0 0 15px rgba(var(--color-accent2),0.5),
+              0 3px 5px rgba(0, 0, 0, 0.2);
+  background-color: #252525;
+  color: var(--color-accent2);
+  text-shadow: 0 0 5px rgba(var(--color-accent), 0.5); /* Texto con glow */
+}
+
+.cv-button:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0 1px var(--color-accent2),
+              0 0 5px rgba(var(--color-accent), 0.3);
+}
+
+.cv-button::before {
+  content: '$ '; /* Símbolo de terminal */
+  position: absolute;
+  left: 15px;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.cv-button::after {
+  content: '_';
+  position: absolute;
+  right: 15px;
+  color: var(--color-accent2);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+/* Versión con variables para modo oscuro/claro (opcional) */
+.cv-button.themed {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent),
+              0 0 10px rgba(var(--color-accent-rgb), 0.3);
+}
+
+.cv-button.themed:hover {
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent),
+              0 0 15px rgba(var(--color-accent-rgb), 0.5),
+              0 3px 5px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 0 5px rgba(var(--color-accent-rgb), 0.5);
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container-inicio {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .typing-animation-container {
+    align-items: center;
+  }
+  
+  .inicio-foto {
+    max-width: 300px;
+  }
+  
+  .typing-animation {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .inicio-wrapper {
+    padding: 1rem;
+  }
+  
+  .name {
+    font-size: 2.5rem;
+  }
+  
+  .typing-animation {
+    font-size: 1.5rem;
+  }
+  
+  .cv-button {
+    padding: 0.7em 1.2em;
+    font-size: 0.9rem;
+  }
+}
+

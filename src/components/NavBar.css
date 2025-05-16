@@ -1,155 +1,170 @@
 .navbar {
-    padding: 1rem;
-    padding-bottom: 0;
-    background-color: var(--color-bg-secondary); /* Usamos el fondo secundario para la navbar */
-    border-bottom: 1px solid var(--color-border);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
-    backdrop-filter: none;
+  padding: 1rem;
+  padding-bottom: 0;
+  background-color: var(--color-bg-secondary);
+  /* Usamos el fondo secundario para la navbar */
+  border-bottom: 1px solid var(--color-border);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  backdrop-filter: none;
 }
 
 .navbar img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .navbar-list {
-    width: auto;
-    max-width: 1200px;
-    margin: 0 1rem;
-    display: flex;
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-    justify-content: flex-end;
-    align-items: center;
+  width: auto;
+  max-width: 1200px;
+  margin: 0 1rem;
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .navbar-list a {
-    text-decoration: none;
-    color: var(--color-text-secondary); /* Texto secundario para los links */
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  /* Texto secundario para los links */
+}
+
+.navbar-list a:hover {
+  color: var(--color-text-primary);
+  /* Color de acento para el hover */
+
 }
 
 .navbar-list a.active {
-    color: var(--color-text-primary); /* Texto primario para el link activo */
-        font-weight: bold;
+  color: var(--color-text-primary);
+  /* Texto primario para el link activo */
+  font-weight: bold;
 
-    border-bottom: 5px solid var(--color-text-primary); /* Usamos el color de acento para el indicador activo */
+  border-bottom: 5px solid var(--color-text-primary);
+  /* Usamos el color de acento para el indicador activo */
 }
 
 /* Cuando se hace scroll */
 .navbar.scrolled {
-    background-color: rgba(248, 248, 248, 0.8); /* Fondo secundario con transparencia */
-    backdrop-filter: blur(6px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(var(--color-text-primary), 0.8);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Overlay que cubre todo menos la navbar */
 .navbar-overlay {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 60px);
-    backdrop-filter: blur(1px);
-    z-index: 9;
-    transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
-    cursor: pointer;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  backdrop-filter: blur(1px);
+  z-index: 9;
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
 }
 
 /* Opcional: si el contenido tiene scroll, evítalo cuando esté abierto */
 body.menu-open {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* Estilos para pantallas más pequeñas */
 @media (max-width: 768px) {
-    .navbar-list {
-        display: none;
-        flex-direction: column;
-        background-color: var(--color-bg-secondary); /* Fondo secundario para el menú */
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        align-items: flex-start;
-        padding: 1rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 10;
-    }
+  .navbar-list {
+    display: none;
+    flex-direction: column;
+    background-color: var(--color-bg-secondary);
+    /* Fondo secundario para el menú */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    align-items: flex-start;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
 
-    .navbar-list.open {
-        display: flex;
-    }
+  .navbar-list.open {
+    display: flex;
+  }
 
-    .navbar-list li {
-        margin-bottom: 0.5rem;
-    }
+  .navbar-list li {
+    margin-bottom: 0.5rem;
+  }
 
-    .navbar-list a {
-        padding: 0.5rem 1rem;
-        display: block;
-        color: var(--color-text-secondary); /* Texto secundario para los links del menú */
-    }
+  .navbar-list a {
+    padding: 0.5rem 1rem;
+    display: block;
+    color: var(--color-text-secondary);
+    /* Texto secundario para los links del menú */
+  }
 
-    .dev-icon {
-        margin-left: 0.5rem;
-    }
+  .dev-icon {
+    margin-left: 0.5rem;
+  }
 
-    /* Estilos para el botón de hamburguesa */
-    .hamburger-button {
-        display: block;
-        cursor: pointer;
-        padding: 0.5rem;
-        border: none;
-        background: none;
-        outline: none;
-        margin-right: 1rem;
-    }
+  /* Estilos para el botón de hamburguesa */
+  .hamburger-button {
+    display: block;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: none;
+    background: none;
+    outline: none;
+    margin-right: 1rem;
+  }
 
-    .hamburger-icon {
-        width: 30px;
-        height: 3px;
-        background-color: var(--color-text-primary); /* Color del icono hamburguesa */
-        margin: 6px 0;
-        transition: 0.4s;
-    }
+  .hamburger-icon {
+    width: 30px;
+    height: 3px;
+    background-color: var(--color-text-primary);
+    /* Color del icono hamburguesa */
+    margin: 6px 0;
+    transition: 0.4s;
+  }
 
-    .hamburger-icon.open:nth-child(1) {
-        transform: rotate(-45deg) translate(-7px, 6px);
-    }
+  .hamburger-icon.open:nth-child(1) {
+    transform: rotate(-45deg) translate(-7px, 6px);
+  }
 
-    .hamburger-icon.open:nth-child(2) {
-        opacity: 0;
-    }
+  .hamburger-icon.open:nth-child(2) {
+    opacity: 0;
+  }
 
-    .hamburger-icon.open:nth-child(3) {
-        transform: rotate(45deg) translate(-7px, -6px);
-    }
+  .hamburger-icon.open:nth-child(3) {
+    transform: rotate(45deg) translate(-7px, -6px);
+  }
 }
 
 /* Ocultamos el botón de hamburguesa en pantallas grandes */
 @media (min-width: 769px) {
-    .hamburger-button {
-        display: none;
-    }
+  .hamburger-button {
+    display: none;
+  }
 }
 
 
 /* Estilos para pantallas más pequeñas */
 @media (max-width: 768px) {
   .theme-toggle-button {
-    margin-right: 0.5rem; /* Ajusta el margen en pantallas pequeñas */
-    padding: 0.5rem 0.8rem; /* Ajusta el padding en pantallas pequeñas */
+    margin-right: 0.5rem;
+    /* Ajusta el margen en pantallas pequeñas */
+    padding: 0.5rem 0.8rem;
+    /* Ajusta el padding en pantallas pequeñas */
     font-size: 0.9rem;
   }
 }
@@ -157,7 +172,8 @@ body.menu-open {
 /* Estilos para pantallas grandes */
 @media (min-width: 769px) {
   .theme-toggle-button {
-    margin-right: 1rem; /* Mantiene el margen en pantallas grandes */
+    margin-right: 1rem;
+    /* Mantiene el margen en pantallas grandes */
     padding: 0.6rem 1rem;
     font-size: 1rem;
   }
@@ -216,15 +232,16 @@ body.menu-open {
   border-radius: 50%;
 }
 
-input:checked + .slider {
-  background-color: var(--color-text-secondary); /* Usa tu color de acento */
+input:checked+.slider {
+  background-color: var(--color-accent);
+  /* Usa tu color de acento */
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px var(--color-accent);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(20px);
 }
 
@@ -249,7 +266,7 @@ input:checked + .slider:before {
     width: 12px;
   }
 
-  input:checked + .slider:before {
+  input:checked+.slider:before {
     transform: translateX(15px);
   }
 }
@@ -275,7 +292,33 @@ input:checked + .slider:before {
     width: 16px;
   }
 
-  input:checked + .slider:before {
+  input:checked+.slider:before {
     transform: translateX(20px);
   }
+}
+
+
+/* Animación de la gota de agua/onda de click */
+@keyframes ripple-animation {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    width: 60px;
+    /* Tamaño final de la gota, ajústalo si lo deseas */
+    height: 60px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.click-ripple {
+  border-radius: 50%;
+  /* Para que la gota sea un círculo */
+  animation: ripple-animation 0.6s ease-out forwards;
+  /* Duración de 0.6s, ajusta si cambias el setTimeout en TS */
 }
