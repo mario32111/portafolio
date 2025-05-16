@@ -1,7 +1,7 @@
 .inicio-wrapper {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 2rem;
@@ -21,7 +21,7 @@
 
 .binary-digit {
   position: absolute;
-  color: rgba(var(--color-text-primary-rgb), 0.1); /* Usando opacidad con el color primario */
+  color: var(--color-accent); /* Usando opacidad con el color primario */
   font-family: monospace;
   animation: float-up 7s linear infinite;
   user-select: none;

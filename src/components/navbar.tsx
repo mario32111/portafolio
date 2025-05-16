@@ -270,12 +270,6 @@ const NavBar: React.FC = () => {
             </nav>
 
             {isMenuOpen && <div className="navbar-overlay" onClick={toggleMenu}></div>}
-
-            <main className="content">
-                <div>
-                    {/* Aquí iría el contenido principal de tu página */}
-                </div>
-            </main>
         </>
     );
 };

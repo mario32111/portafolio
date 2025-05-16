@@ -24,7 +24,7 @@ const Inicio: FunctionComponent<InicioProps> = () => {
   }, [currentIndex, text]);
 
   return (
-    <div className="inicio-wrapper">
+    <div id="inicio" className="inicio-wrapper">
       <div className="binary-background">
         {[...Array(30)].map((_, i) => (
           <div
