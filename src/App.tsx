@@ -4,6 +4,8 @@ import NavBar from './components/navbar'
 import Inicio from './components/Inicio'
 import Tecnologias from './components/Tecnologias'
 import Proyectos from './components/Proyectos'
+import Contacto from './components/Contacto'
+import SobreMi from './components/SobreMi'
 
 function App() {
 
@@ -12,10 +14,11 @@ function App() {
       <NavBar />
       <main className="content">
         <div>
-          {/* Aquí iría el contenido principal de tu página */}
-                <Inicio />
-                <Tecnologias />
-                <Proyectos />
+          <Inicio />
+          <SobreMi />
+          <Tecnologias />
+          <Proyectos />
+          <Contacto />
         </div>
       </main>
 

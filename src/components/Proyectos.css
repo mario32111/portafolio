@@ -2,7 +2,7 @@
 
 .proyectos-section {
   padding: 4rem 2rem;
-  background-color: var(--color-bg-primary); /* Podrías alternar el color de fondo con Tecnologias.css */
+  background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   text-align: center;
 }
@@ -15,8 +15,8 @@
 
 .proyectos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Tarjetas de 300px mínimo */
-  gap: 2.5rem; /* Espacio entre las tarjetas */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -24,7 +24,7 @@
 .proyecto-card {
   background-color: var(--color-bg-secondary);
   border-radius: 12px;
-  overflow: hidden; /* Para que la imagen no se salga del borde redondeado */
+  overflow: hidden;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
@@ -38,8 +38,8 @@
 
 .proyecto-image {
   width: 100%;
-  height: 220px; /* Altura fija para las imágenes */
-  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  height: 220px;
+  object-fit: cover;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -47,7 +47,7 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Para que el contenido ocupe el espacio restante */
+  flex-grow: 1;
 }
 
 .proyecto-card-title {
@@ -61,18 +61,18 @@
   color: var(--color-text-secondary);
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  flex-grow: 1; /* Para que la descripción empuje los enlaces hacia abajo */
+  flex-grow: 1;
 }
 
 .proyecto-tech-list {
   display: flex;
-  flex-wrap: wrap; /* Para que las etiquetas de tecnología se envuelvan */
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
 .proyecto-tech-tag {
-  background-color: var(--color-bg-tertiary); /* Un fondo sutil para cada etiqueta */
+  background-color: var(--color-bg-tertiary);
   color: var(--color-text-secondary);
   padding: 0.4em 0.8em;
   border-radius: 5px;
@@ -82,26 +82,28 @@
 
 .proyecto-links {
   display: flex;
+  flex-wrap: wrap; /* Añadido para que los enlaces se envuelvan si no caben en una línea */
   justify-content: center;
-  gap: 1.5rem;
-  margin-top: auto; /* Empuja los enlaces al final de la tarjeta */
+  gap: 1.5rem; /* Espacio entre los enlaces */
+  margin-top: auto;
 }
 
 .proyecto-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-accent); /* Tu color verde de acento */
+  color: var(--color-accent);
   text-decoration: none;
   font-weight: 600;
   padding: 0.6em 1em;
   border-radius: 8px;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  white-space: nowrap; /* Evita que el texto del enlace se rompa en varias líneas */
 }
 
 .proyecto-link:hover {
   background-color: var(--color-accent);
-  color: var(--color-bg-primary); /* Texto blanco sobre el fondo de acento */
+  color: var(--color-bg-primary);
 }
 
 /* --- Media Queries para responsividad --- */
@@ -118,7 +120,7 @@
   }
 
   .proyectos-grid {
-    grid-template-columns: 1fr; /* Una sola columna en móviles */
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
 
@@ -148,15 +150,18 @@
   }
 
   .proyecto-links {
-    flex-direction: column; /* Enlaces apilados en móviles */
-    gap: 1rem;
+    /* Aquí es donde se hizo el ajuste clave */
+    flex-direction: row; /* Mantén los enlaces en fila */
+    flex-wrap: wrap; /* Permitir que se envuelvan si no caben */
+    justify-content: center; /* Centrar los enlaces envueltos */
+    gap: 0.8rem; /* Un poco menos de espacio en móviles */
   }
 }
 
 /* Tabletas (768px a 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .proyectos-grid {
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
@@ -165,10 +170,9 @@
   }
 }
 
-
 /* Estilos para el modo oscuro */
 .dark-mode .proyectos-section {
-  background-color: var(--color-bg-primary); /* Puedes mantenerlo primary o secondary */
+  background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
 }
 
@@ -182,7 +186,7 @@
 }
 
 .dark-mode .proyecto-image {
-  border-bottom-color: var(--color-border); /* Asegura que el borde oscuro sea visible */
+  border-bottom-color: var(--color-border);
 }
 
 .dark-mode .proyecto-card-title {

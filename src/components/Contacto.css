@@ -1,0 +1,225 @@
+/* Contacto.css */
+
+.contacto-section {
+  padding: 4rem 2rem;
+  background-color: var(--color-bg-secondary); /* Alterna el color de fondo con la sección anterior */
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.contacto-title {
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+  color: var(--color-accent);
+}
+
+.contacto-subtitle {
+  font-size: 1.1em;
+  color: var(--color-text-secondary);
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contacto-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: var(--color-bg-primary);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-bg-light-section);
+  color: var(--color-text-primary);
+  font-size: 1em;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.3); /* Un sutil brillo verde */
+  outline: none;
+}
+
+.form-textarea {
+  resize: vertical; /* Permite redimensionar solo verticalmente */
+  min-height: 100px;
+}
+
+.input-error {
+  border-color: #e53e3e !important; /* Rojo para errores */
+}
+
+.error-message {
+  color: #e53e3e; /* Rojo para texto de error */
+  font-size: 0.9em;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.submit-button {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary); /* Texto blanco */
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  width: 100%; /* Ocupa todo el ancho del formulario */
+  max-width: 250px; /* Ancho máximo para el botón */
+  margin-top: 1.5rem;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: var(--color-accent2); /* Variante más clara para hover */
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background-color: var(--color-text-tertiary); /* Gris cuando deshabilitado */
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.submit-status {
+  margin-top: 1.5rem;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.submit-status.success {
+  color: var(--color-accent); /* Verde para éxito */
+}
+
+.submit-status.failure {
+  color: #e53e3e; /* Rojo para fallo */
+}
+
+/* --- Media Queries para responsividad --- */
+
+@media (max-width: 767px) {
+  .contacto-section {
+    padding: 3rem 1rem;
+  }
+
+  .contacto-title {
+    font-size: 2em;
+    margin-bottom: 1rem;
+  }
+
+  .contacto-subtitle {
+    font-size: 1em;
+    margin-bottom: 2rem;
+  }
+
+  .contacto-form {
+    padding: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-label {
+    font-size: 0.95em;
+    margin-bottom: 0.4rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.95em;
+  }
+
+  .submit-button {
+    font-size: 1em;
+    padding: 0.8rem 1.5rem;
+    max-width: 200px;
+  }
+}
+
+
+/* Estilos para el modo oscuro */
+.dark-mode .contacto-section {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.dark-mode .contacto-subtitle {
+  color: var(--color-text-secondary);
+}
+
+.dark-mode .contacto-form {
+  background-color: var(--color-bg-primary); /* Fondo del formulario */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .form-label {
+  color: var(--color-text-primary);
+}
+
+.dark-mode .form-input,
+.dark-mode .form-textarea {
+  border-color: var(--color-border);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.dark-mode .form-input:focus,
+.dark-mode .form-textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.5);
+}
+
+.dark-mode .input-error {
+  border-color: #ef4444 !important; /* Rojo más brillante para oscuro */
+}
+
+.dark-mode .error-message {
+  color: #ef4444;
+}
+
+.dark-mode .submit-button {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.dark-mode .submit-button:hover:not(:disabled) {
+  background-color: var(--color-accent2);
+}
+
+.dark-mode .submit-button:disabled {
+  background-color: var(--color-text-tertiary);
+}
+
+.dark-mode .submit-status.success {
+  color: var(--color-accent);
+}
+
+.dark-mode .submit-status.failure {
+  color: #ef4444;
+}

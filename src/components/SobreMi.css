@@ -1,0 +1,324 @@
+/* SobreMi.css */
+
+.sobre-mi-section {
+  padding: 5rem 2rem;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.sobre-mi-title {
+  font-size: 3em;
+  margin-bottom: 3.5rem;
+  color: var(--color-accent);
+  position: relative;
+}
+
+.sobre-mi-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--color-accent);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+.sobre-mi-content {
+  display: grid;
+  grid-template-columns: 1fr; /* Por defecto una columna */
+  gap: 3rem; /* Espacio entre las tarjetas de sección */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sobre-mi-section-card {
+  background-color: var(--color-bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem;
+  text-align: left; /* Alinea el texto dentro de las tarjetas */
+}
+
+.card-title {
+  font-size: 2em;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  text-align: center; /* Centra el título de cada tarjeta */
+}
+
+/* --- Quién Soy --- */
+.who-am-i p {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: 1em;
+}
+.who-am-i p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* --- Soft Skills --- */
+.soft-skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra las soft skills */
+  gap: 0.8rem; /* Espacio entre las soft skills */
+}
+
+.soft-skill-item {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  padding: 0.7em 1.2em;
+  border-radius: 25px; /* Bordes más redondeados para las pastillas */
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.soft-skill-item:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+
+/* --- Trayectoria de Estudios (Línea del Tiempo) --- */
+.timeline-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 20px; /* Espacio para la línea vertical */
+}
+
+/* Línea vertical */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  background-color: var(--color-border); /* Color de la línea */
+  height: 100%;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem; /* Espacio entre eventos */
+  padding-left: 40px; /* Espacio para el contenido del evento */
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Punto en la línea */
+.timeline-dot {
+  position: absolute;
+  top: 0.4rem;
+  left: -8px; /* Ajusta para que el punto quede sobre la línea */
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  border: 4px solid var(--color-bg-secondary); /* Borde para el punto */
+  z-index: 1; /* Asegura que el punto esté por encima de la línea */
+}
+
+.timeline-content {
+  background-color: var(--color-bg-light-section); /* Fondo para el contenido del evento */
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
+}
+
+.timeline-year {
+  font-size: 0.9em;
+  font-weight: 700;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+  font-size: 1.3em;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-institution {
+  font-size: 1em;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.8rem;
+}
+
+.timeline-description {
+  font-size: 0.95em;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* --- Media Queries para responsividad --- */
+
+/* Pantallas pequeñas (teléfonos móviles, menos de 768px) */
+@media (max-width: 767px) {
+  .sobre-mi-section {
+    padding: 3rem 1rem;
+  }
+
+  .sobre-mi-title {
+    font-size: 2.2em;
+    margin-bottom: 2rem;
+  }
+  .sobre-mi-title::after {
+    width: 60px;
+  }
+
+  .sobre-mi-content {
+    gap: 2rem;
+  }
+
+  .sobre-mi-section-card {
+    padding: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.7em;
+    margin-bottom: 1rem;
+  }
+
+  .who-am-i p {
+    font-size: 1em;
+  }
+
+  .soft-skill-item {
+    padding: 0.6em 1em;
+    font-size: 0.9em;
+  }
+
+  .timeline-container {
+    padding-left: 15px; /* Menor espacio para la línea */
+  }
+  .timeline-container::before {
+    left: 0; /* Asegura que la línea esté al borde */
+  }
+
+  .timeline-item {
+    padding-left: 30px; /* Menor espacio para el contenido */
+    margin-bottom: 2rem;
+  }
+  .timeline-dot {
+    left: -7px; /* Ajusta el punto */
+    width: 18px;
+    height: 18px;
+    border-width: 3px;
+  }
+  .timeline-content {
+    padding: 0.8rem 1.2rem;
+  }
+  .timeline-year, .timeline-institution {
+    font-size: 0.85em;
+  }
+  .timeline-title {
+    font-size: 1.2em;
+  }
+  .timeline-description {
+    font-size: 0.9em;
+  }
+}
+
+/* Pantallas medianas (tabletas, entre 768px y 1024px) */
+@media (min-width: 768px) {
+  .sobre-mi-content {
+    /* Aquí definimos el layout para pantallas más grandes */
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-template-areas:
+      "who-am-i who-am-i" /* Quién Soy ocupa todo el ancho de la primera fila */
+      "soft-skills education-timeline"; /* Soft Skills y Trayectoria en la segunda fila */
+  }
+  .who-am-i {
+    grid-area: who-am-i;
+  }
+  .soft-skills {
+    grid-area: soft-skills;
+  }
+  .education-timeline {
+    grid-area: education-timeline;
+  }
+
+  .sobre-mi-section-card {
+    padding: 2rem;
+  }
+  .card-title {
+    font-size: 1.8em;
+  }
+}
+
+/* Estilos para el modo oscuro */
+.dark-mode .sobre-mi-section {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.dark-mode .sobre-mi-title {
+  color: var(--color-accent);
+}
+
+.dark-mode .sobre-mi-title::after {
+  background-color: var(--color-accent);
+}
+
+.dark-mode .sobre-mi-section-card {
+  background-color: var(--color-bg-secondary);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .card-title {
+  color: var(--color-accent);
+}
+
+.dark-mode .who-am-i p {
+  color: var(--color-text-secondary);
+}
+
+.dark-mode .soft-skill-item {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+}
+
+.dark-mode .soft-skill-item:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.dark-mode .timeline-container::before {
+  background-color: var(--color-border);
+}
+
+.dark-mode .timeline-dot {
+  background-color: var(--color-accent);
+  border-color: var(--color-bg-secondary);
+}
+
+.dark-mode .timeline-content {
+  background-color: var(--color-bg-light-section);
+  border-color: var(--color-border);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .timeline-year {
+  color: var(--color-accent);
+}
+
+.dark-mode .timeline-title {
+  color: var(--color-text-primary);
+}
+
+.dark-mode .timeline-institution,
+.dark-mode .timeline-description {
+  color: var(--color-text-secondary);
+}

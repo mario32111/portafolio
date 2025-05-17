@@ -11,9 +11,9 @@ interface NavItem {
 
 const navItems: NavItem[] = [
     { label: "INICIO", href: "inicio" },
+    { label: "SOBRE MI", href: "sobre-mi" },
     { label: "TECNOLOGIAS", href: "tecnologias" },
     { label: "PROYECTOS", href: "proyectos" },
-    { label: "SOBRE MI", href: "sobremi" },
     { label: "CONTACTO", href: "contacto" }
 ];
 
@@ -127,10 +127,10 @@ const NavBar: React.FC = () => {
         };
     }, [isDarkMode]); // Dependencia para que el color de la gota se actualice con el tema
 
-    const handleClick = (label: string, event: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleClick = (href: string, label: string, event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         setActiveItem(label);
-        const sectionElement = document.getElementById(label.toLowerCase());
+        const sectionElement = document.getElementById(href.toLowerCase());
         sectionElement?.scrollIntoView({ behavior: 'smooth' });
         setIsMenuOpen(false);
     };
@@ -252,7 +252,7 @@ const NavBar: React.FC = () => {
                             <a
                                 href={`#${item.href}`}
                                 className={activeItem === item.label ? "active" : ""}
-                                onClick={(event) => handleClick(item.label, event)}
+                                onClick={(event) => handleClick(item.href, item.label, event)}
                             >
                                 {item.label}
                             </a>

@@ -1,3 +1,5 @@
+/* Inicio.css */
+
 .inicio-wrapper {
   position: relative;
   width: 100%;
@@ -7,6 +9,8 @@
   padding: 2rem;
   box-sizing: border-box;
   background-color: var(--color-bg-primary);
+  overflow: hidden;
+  /* Asegura que el fondo binario no cause scroll */
 }
 
 .binary-background {
@@ -21,7 +25,8 @@
 
 .binary-digit {
   position: absolute;
-  color: var(--color-accent); /* Usando opacidad con el color primario */
+  color: var(--color-accent);
+  /* Usando opacidad con el color primario */
   font-family: monospace;
   animation: float-up 7s linear infinite;
   user-select: none;
@@ -31,6 +36,7 @@
   0% {
     transform: translateY(100%);
   }
+
   100% {
     transform: translateY(-50%);
   }
@@ -50,27 +56,27 @@
 /* Contenedor del marco y la foto */
 .foto-container {
   position: relative;
-  width: fit-content; /* Ajusta el ancho al contenido */
-  margin: 0 auto; /* Centra el contenedor */
+  width: fit-content;
+  margin: 0 auto;
 }
 
 /* Marco que sobresale */
 .marco-foto {
   position: absolute;
-  top: -15px; /* Sobresale 15px arriba */
-  left: -15px; /* Sobresale 15px a la izquierda */
-  width: calc(100%); /* Compensa el desplazamiento */
-  height: calc(100%); /* Compensa el desplazamiento */
-  border-radius: 5px; /* Un poco más grande que la foto */
+  top: -15px;
+  left: -15px;
+  width: calc(100%);
+  height: calc(100%);
+  border-radius: 5px;
   border: 5px solid var(--color-border);
   background-color: transparent;
-  z-index: -1; /* Para que quede detrás de la foto */
+  z-index: -1;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos para la foto */
 .inicio-foto {
-  position: relative; /* Necesario para el z-index */
+  position: relative;
   width: 100%;
   max-width: 400px;
   min-width: 250px;
@@ -78,16 +84,17 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
   border: 1px solid var(--color-border);
-  z-index: 1; /* Para que esté sobre el marco */
-  display: block; /* Elimina espacio inferior de img */
+  z-index: 1;
+  display: block;
 }
+
 /* Efecto hover */
 .foto-container:hover .inicio-foto {
-  transform: translate(5px, -5px); /* Pequeño movimiento */
+  transform: translate(5px, -5px);
 }
 
 .foto-container:hover .marco-foto {
-  transform: translate(-5px, 5px); /* Movimiento opuesto para efecto 3D */
+  transform: translate(-5px, 5px);
 }
 
 .typing-animation-container {
@@ -97,6 +104,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  /* Alinea el texto a la izquierda por defecto */
 }
 
 .greeting {
@@ -115,7 +123,7 @@
 
 .typing-animation {
   font-size: clamp(1.5rem, 4vw, 3.5rem);
-  color: var(--color-accent); /* Usando el color de acento para el texto de desarrollador */
+  color: var(--color-accent);
   overflow: hidden;
   white-space: nowrap;
   margin: 1rem 0;
@@ -126,57 +134,100 @@
 .blinking-cursor {
   display: inline-block;
   width: 0.15em;
-  background-color: var(--color-accent); /* Mismo color de acento para consistencia */
+  background-color: var(--color-accent);
   animation: blinking-cursor 0.75s step-end infinite;
 }
 
 @keyframes blinking-cursor {
-  from, to { background-color: transparent }
-  50% { background-color: var(--color-accent); }
+
+  from,
+  to {
+    background-color: transparent
+  }
+
+  50% {
+    background-color: var(--color-accent);
+  }
+}
+
+/* --- NUEVOS ESTILOS PARA LOS ENLACES SOCIALES EN INICIO --- */
+.social-links-inicio {
+  display: flex;
+  gap: 1.5rem;
+  /* Espacio entre los íconos */
+  margin-top: 1.5rem;
+  /* Espacio superior para separarlo del texto */
+  margin-bottom: 1.5rem;
+  /* Espacio inferior para separarlo del botón */
+}
+
+.social-icon-link-inicio {
+  color: var(--color-accent);
+  /* Color principal del ícono */
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  padding: 0.5rem;
+  /* Espacio alrededor del ícono para facilitar el click */
+  border-radius: 5px;
+  /* Ligeros bordes redondeados */
+  display: flex;
+  /* Asegura que el padding funcione bien */
+  align-items: center;
+  /* Centra el ícono */
+  justify-content: center;
+  /* Centra el ícono */
+}
+
+.social-icon-link-inicio:hover {
+  transform: translateY(-5px);
+  /* Efecto de elevación */
+  color: var(--color-accent2);
+  /* Cambio de color al pasar el ratón */
 }
 
 .cv-button {
+  text-decoration: none;
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 0.8em 1.8em;
   margin-top: 1.5rem;
+  /* Ajustado para que quede debajo de los enlaces */
   border: none;
-  border-radius: 4px; /* Más angular como ventana de terminal */
-  background-color: var(--color-bg-primary); /* Fondo oscuro como IDE */
-  border: 1px solid var(--color-border); /* Borde gris claro */
-  color: var(--color-accent); /* Verde de terminal clásico */
-  font-family: 'Courier New', monospace; /* Fuente tipo código */
+  border-radius: 4px;
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  color: var(--color-accent);
+  font-family: 'Courier New', monospace;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 0 0 1px var(--color-accent2), /* Borde verde tipo sintaxis */
-              0 0 10px rgba(var(--color-accent), 0.3); /* Glow verde */
-  text-transform: uppercase; /* Estilo comandos */
+  box-shadow: 0 0 0 1px var(--color-accent2),
+    0 0 10px rgba(var(--color-accent-rgb), 0.3);
+  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .cv-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 0 1px var(--color-accent2),
-              0 0 15px rgba(var(--color-accent2),0.5),
-              0 3px 5px rgba(0, 0, 0, 0.2);
+    0 0 15px rgba(var(--color-accent2), 0.5),
+    0 3px 5px rgba(0, 0, 0, 0.2);
   background-color: var(--color-bg-secondary);
   color: var(--color-accent2);
-  text-shadow: 0 0 5px rgba(var(--color-accent), 0.5); /* Texto con glow */
+  text-shadow: 0 0 5px rgba(var(--color-accent), 0.5);
 }
 
 .cv-button:active {
   transform: translateY(0);
   box-shadow: 0 0 0 1px var(--color-accent2),
-              0 0 5px rgba(var(--color-accent), 0.3);
+    0 0 5px rgba(var(--color-accent), 0.3);
 }
 
 .cv-button::before {
-  content: '$ '; /* Símbolo de terminal */
+  content: '$ ';
   position: absolute;
   left: 15px;
   color: var(--color-accent);
@@ -192,8 +243,15 @@
 }
 
 @keyframes blink {
-  from, to { opacity: 0 }
-  50% { opacity: 1 }
+
+  from,
+  to {
+    opacity: 0
+  }
+
+  50% {
+    opacity: 1
+  }
 }
 
 /* Versión con variables para modo oscuro/claro (opcional) */
@@ -201,33 +259,47 @@
   background-color: var(--color-bg-secondary);
   color: var(--color-accent);
   box-shadow: 0 0 0 1px var(--color-accent),
-              0 0 10px rgba(var(--color-accent-rgb), 0.3);
+    0 0 10px rgba(var(--color-accent-rgb), 0.3);
 }
 
 .cv-button.themed:hover {
   color: var(--color-accent);
   box-shadow: 0 0 0 1px var(--color-accent),
-              0 0 15px rgba(var(--color-accent-rgb), 0.5),
-              0 3px 5px rgba(0, 0, 0, 0.2);
+    0 0 15px rgba(var(--color-accent-rgb), 0.5),
+    0 3px 5px rgba(0, 0, 0, 0.2);
   text-shadow: 0 0 5px rgba(var(--color-accent-rgb), 0.5);
 }
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .container-inicio {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .typing-animation-container {
     align-items: center;
+    /* Centra el texto y los enlaces en móviles */
   }
-  
+
   .inicio-foto {
     max-width: 300px;
   }
-  
+
   .typing-animation {
     white-space: normal;
+  }
+
+  .social-links-inicio {
+    justify-content: center;
+    /* Centra los íconos en móviles */
+    gap: 1rem;
+    /* Menor espacio entre íconos */
+  }
+
+  .social-icon-link-inicio svg {
+    size: 28px;
+    /* Íconos un poco más pequeños en móviles */
   }
 }
 
@@ -235,18 +307,29 @@
   .inicio-wrapper {
     padding: 1rem;
   }
-  
+
   .name {
     font-size: 2.5rem;
   }
-  
+
   .typing-animation {
     font-size: 1.5rem;
   }
-  
+
   .cv-button {
     padding: 0.7em 1.2em;
     font-size: 0.9rem;
   }
 }
 
+/* Estilos para el modo oscuro (asegurando que los nuevos elementos se vean bien) */
+.dark-mode .social-icon-link-inicio {
+  color: var(--color-accent);
+  /* Mismo color acento para íconos */
+}
+
+.dark-mode .social-icon-link-inicio:hover {
+  color: var(--color-accent2);
+  /* Color de hover para íconos */
+  box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.3);
+}

@@ -43,7 +43,12 @@ body {
   background-color: var(--color-bg-primary);
 }
 
-.content {
-  margin-top: 80px;
-  /* o lo que mida tu navbar */
+
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-top: 80px;
+    /* o lo que mida tu navbar */
+  }
+  
 }

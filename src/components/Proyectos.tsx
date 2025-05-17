@@ -1,45 +1,85 @@
 import { type FunctionComponent } from "react";
 import "./Proyectos.css"; // Importa el archivo de estilos para este componente
 
-// Importa los íconos necesarios para los enlaces y tecnologías específicas si no las tienes ya
+// Importa los íconos necesarios
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-// Puedes importar iconos de tecnologías si quieres mostrarlos en cada tarjeta de proyecto,
-// o simplemente listarlos como texto. Si ya los tienes importados en Tecnologias.tsx,
-// y no los necesitas visualmente aquí, no es estrictamente necesario re-importarlos.
-// Por ejemplo:
-// import { FaReact, FaNodeJs, SiMongodb } from 'react-icons/fa';
 
+import p1 from "../assets/p1.jpg";
+import p2 from "../assets/p2.jpg";
+import p3 from "../assets/p3.jpg";
 
 interface ProyectosProps {}
 
 const Proyectos: FunctionComponent<ProyectosProps> = () => {
-  // Define tus proyectos como un array de objetos
   const projects = [
     {
-      title: "Nombre del Proyecto 1",
-      description: "Una descripción concisa y atractiva de tu primer proyecto. Destaca sus características principales y qué problema resuelve.",
-      technologies: ["React", "Node.js", "MongoDB", "Express.js", "REST API"],
-      imageUrl: "https://via.placeholder.com/600x400?text=Proyecto+1", // Reemplaza con la URL real de tu imagen/GIF
-      githubUrl: "https://github.com/tu-usuario/proyecto-1", // Reemplaza con tu URL de GitHub
-      liveUrl: "https://proyecto1.netlify.app", // Reemplaza con la URL de tu proyecto desplegado (si existe)
+      title: "HydroLink – Sistema de riego inteligente",
+      description: "Desarrollo de un sistema automatizado de riego que ajusta los ciclos de riego en función de los datos recolectados por sensores de humedad y temperatura del suelo. Permite una gestión eficiente del agua mediante controladores con conectividad móvil que transmiten la información en tiempo real. Incluye procesamiento y análisis de datos en tiempo real para optimizar el riego, y una arquitectura distribuida con aplicación móvil, llaves inteligentes de campo, y API REST alojada en AWS. Se implementaron flujos de CI/CD.",
+      technologies: ["React Native", "MQTT", "TypeScript", "JavaScript", "PostgreSQL", "Express", "Sequelize", "C++", "Docker", "CI/CD", "AWS"],
+      imageUrl: p2,
+      // Múltiples repositorios de GitHub
+      githubUrls: [
+        { name: "Backend", url: "https://github.com/mario32111/backend-hydrolink" },
+        { name: "App Móvil", url: "https://github.com/mario32111/Hydrolink-App" },
+        { name: "Dispositivo IoT", url: "https://github.com/mario32111/hydrolink-IoT-Firmware" },
+      ],
+      liveUrl: null,
     },
     {
-      title: "Nombre del Proyecto 2",
-      description: "Segundo proyecto. Puedes mencionar aquí si fue un proyecto personal, de bootcamp, o para un cliente.",
-      technologies: ["Angular", "Python", "PostgreSQL", "Docker", "AWS"],
-      imageUrl: "https://via.placeholder.com/600x400?text=Proyecto+2",
-      githubUrl: "https://github.com/tu-usuario/proyecto-2",
-      liveUrl: null, // Si no hay un demo desplegado, déjalo como null
+      title: "ProyectoExpotec – Aplicación web de preguntas sobre informática",
+      description: "Aplicación web interactiva y llamativa desarrollada para la Expotec, con el objetivo de crear una experiencia divertida para estudiantes de preparatoria. Permite realizar preguntas aleatorias sobre informática y visualizar los resultados en tiempo real. Manejó alrededor de 50 usuarios activos simultáneamente y fue desarrollado en una semana, recibiendo una excelente acogida por su interfaz amigable y dinámica.",
+      technologies: ["React", "TypeScript", "PostgreSQL", "Redux", "Express", "Sequelize", "HTML", "CSS", "Render"],
+      imageUrl: p1,
+      // Un solo repositorio, pero sigue siendo un array
+      githubUrls: [
+        { name: "Repositorio", url: "https://github.com/mario32111/expotec-app" },
+      ],
+      liveUrl: "https://expotec.onrender.com/", // Reemplaza con la URL real de tu proyecto desplegado
     },
     {
-      title: "Nombre del Proyecto 3 (Destacado)",
-      description: "Tu proyecto más importante o complejo. Detalla las tecnologías avanzadas que usaste y los desafíos que superaste.",
-      technologies: ["Next.js", "TypeScript", "Nest.js", "MongoDB", "Tailwind CSS", "JWT"],
-      imageUrl: "https://via.placeholder.com/600x400?text=Proyecto+3",
-      githubUrl: "https://github.com/tu-usuario/proyecto-3",
-      liveUrl: "https://proyecto3.vercel.app",
+      title: "KapraDesign – Sistema de seguimiento de pedidos y procesos",
+      description: "Sistema desarrollado para plataformas móviles y PC con el objetivo de mostrar y controlar el flujo de trabajo de la empresa, ligado directamente a sus pedidos. Fue desarrollado de forma freelance, incluyendo análisis de necesidades e interacción directa con el cliente. El sistema está conformado por una aplicación móvil, una API REST, una base de datos y una aplicación de escritorio. Aunque no fue implementado comercialmente, sirvió como prueba de concepto y tiene alta posibilidad de implementarse en futuro.",
+      technologies: ["React Native", "TypeScript", "PostgreSQL", "Sequelize", "Express", "Electron", "Docker"],
+      imageUrl: p3,
+      githubUrls: [
+        { name: "API REST", url: "https://github.com/mario32111/kapra-design-api" },
+        { name: "App Escritorio", url: "https://github.com/mario32111/kapra-design-desktop" },
+        { name: "App Móvil", url: "https://github.com/mario32111/kapra-design-mobile" },
+      ],
+      liveUrl: null,
     },
-    // Añade más proyectos aquí siguiendo el mismo formato
+    {
+      title: "Microservices-Superflights",
+      description: "API REST para la gestión de vuelos, utilizando una arquitectura de microservicios. Permite a los usuarios buscar y reservar vuelos de manera eficiente, con un diseño moderno y funcional.",
+      technologies: ["Nest.js", "AWS", "JWT", "Docker", "Swagger", "MongoDB", "Node.js", "GitHub", "Postman"],
+      imageUrl: p3,
+      githubUrls: [
+        { name: "Gateway", url: "https://github.com/mario32111/nest-superflights-api-gateway" },
+        { name: "Auth Service", url: "https://github.com/mario32111/nest-superflights-auth-service" },
+        { name: "Flights Service", url: "https://github.com/mario32111/nest-superflights-flights-service" },
+      ],
+      liveUrl: null,
+    },
+    {
+      title: "MyEconomy",
+      description: "Maquetación de una aplicación móvil para el control de gastos personales, con un diseño atractivo y funcional. La aplicación permite a los usuarios llevar un registro de sus gastos e ingresos, ayudando a gestionar su economía personal de manera eficiente.",
+      technologies: ["React Native", "React", "JavaScript", "CSS"],
+      imageUrl: p3,
+      githubUrls: [
+        { name: "Repositorio", url: "https://github.com/mario32111/my-economy-app" },
+      ],
+      liveUrl: null,
+    },
+    {
+      title: "ArtChallange",
+      description: "Aplicación web para la creación de arte digital, con una interfaz intuitiva y herramientas avanzadas para artistas. Permite a los usuarios crear, editar y compartir sus obras de arte en una comunidad en línea.",
+      technologies: ["Angular", "Firebase", "HTML", "CSS", "TypeScript"],
+      imageUrl: p3,
+      githubUrls: [
+        { name: "Repositorio", url: "https://github.com/mario32111/art-challenge-angular" },
+      ],
+      liveUrl: null,
+    },
   ];
 
   return (
@@ -60,18 +100,21 @@ const Proyectos: FunctionComponent<ProyectosProps> = () => {
                 ))}
               </div>
               <div className="proyecto-links">
-                {project.githubUrl && (
+                {/* Mapea sobre el array de githubUrls para mostrar cada enlace */}
+                {project.githubUrls && project.githubUrls.map((repo, repoIndex) => (
                   <a
-                    href={project.githubUrl}
+                    key={repoIndex} // Usar un key único para cada enlace del repositorio
+                    href={repo.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="proyecto-link github"
-                    aria-label={`Ver código de ${project.title} en GitHub`}
+                    aria-label={`Ver código de ${repo.name} de ${project.title} en GitHub`}
                   >
                     <FaGithub size={20} />
-                    <span>GitHub</span>
+                    <span>{repo.name}</span> {/* Muestra el nombre específico del repositorio */}
                   </a>
-                )}
+                ))}
+
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}
