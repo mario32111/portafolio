@@ -1,62 +1,50 @@
 import { type FunctionComponent, useState } from "react";
-import "./Contacto.css"; // Importa el archivo de estilos
+import "./Contacto.css";
 
 interface ContactoProps {}
 
 const Contacto: FunctionComponent<ContactoProps> = () => {
-  // Estados para los campos del formulario
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    message: ""
   });
 
-  // Estados para errores de validación
   const [errors, setErrors] = useState({
     name: "",
     email: "",
-    message: "",
+    message: ""
   });
 
-  // Estado para el mensaje de éxito/error del envío
-  const [submitMessage, setSubmitMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Para deshabilitar el botón
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  // Manejador de cambios en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    // Limpia el error al empezar a escribir
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "",
-    }));
-    setSubmitMessage(""); // Limpia mensaje de envío al cambiar input
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: "" }));
+    setSubmitStatus("idle");
   };
 
-  // Función de validación (muy básica)
   const validateForm = () => {
     let isValid = true;
     const newErrors = { name: "", email: "", message: "" };
 
     if (!formData.name.trim()) {
-      newErrors.name = "El nombre es requerido.";
+      newErrors.name = "El nombre es requerido";
       isValid = false;
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "El correo electrónico es requerido.";
+      newErrors.email = "El correo es requerido";
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "El correo electrónico no es válido.";
+      newErrors.email = "Correo no válido";
       isValid = false;
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "El mensaje es requerido.";
+      newErrors.message = "El mensaje es requerido";
       isValid = false;
     }
 
@@ -64,43 +52,41 @@ const Contacto: FunctionComponent<ContactoProps> = () => {
     return isValid;
   };
 
-  // Manejador del envío del formulario
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Evita el comportamiento predeterminado del formulario
+    e.preventDefault();
 
-    if (!validateForm()) {
-      return; // Si la validación falla, no continúa
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setSubmitMessage(""); // Limpia mensajes anteriores
+    setSubmitStatus("idle");
 
     try {
-      // --- Aquí es donde integrarías tu servicio de backend o de terceros ---
-      // Ejemplo con un fetch (necesitarías un endpoint real):
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(formData),
-      // });
+      const response = await fetch("https://formspree.io/f/mgvkdlpl", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          _replyto: formData.email,
+          message: formData.message,
+          _subject: "Nuevo mensaje desde tu portfolio",
+          _recipient: "marioge44@gmail.com"
+        }),
+      });
 
-      // if (response.ok) {
-      //   setSubmitMessage("¡Mensaje enviado con éxito! Te responderé pronto.");
-      //   setFormData({ name: "", email: "", message: "" }); // Limpia el formulario
-      // } else {
-      //   setSubmitMessage("Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.");
-      // }
-
-      // Simulación de envío exitoso para demostración:
-      await new Promise((resolve) => setTimeout(resolve, 1500)); // Simula un retraso de red
-      setSubmitMessage("¡Mensaje enviado con éxito! Te responderé pronto.");
-      setFormData({ name: "", email: "", message: "" }); // Limpia el formulario
-
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        const errorData = await response.json();
+        console.error("Error de Formspree:", errorData);
+        setSubmitStatus("error");
+      }
     } catch (error) {
-      console.error("Error al enviar el formulario:", error);
-      setSubmitMessage("Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.");
+      console.error("Error de red:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -147,7 +133,7 @@ const Contacto: FunctionComponent<ContactoProps> = () => {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            rows={5} // Número de filas visibles
+            rows={5}
             className={`form-textarea ${errors.message ? 'input-error' : ''}`}
             disabled={isSubmitting}
           />
@@ -157,14 +143,28 @@ const Contacto: FunctionComponent<ContactoProps> = () => {
         <button
           type="submit"
           className="submit-button"
-          disabled={isSubmitting} // Deshabilita el botón mientras se envía
+          disabled={isSubmitting}
         >
-          {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+          {isSubmitting ? (
+            <span className="flex items-center justify-center">
+              <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            </span>
+          ) : "Enviar Mensaje"}
         </button>
 
-        {submitMessage && (
-          <p className={`submit-status ${submitMessage.includes("éxito") ? 'success' : 'failure'}`}>
-            {submitMessage}
+        {submitStatus === "success" && (
+          <p className="submit-status success mt-4">
+            ✔️ Mensaje enviado con éxito
+          </p>
+        )}
+
+        {submitStatus === "error" && (
+          <p className="submit-status error mt-4">
+            ❌ Error al enviar el mensaje. Por favor inténtalo nuevamente.
           </p>
         )}
       </form>
