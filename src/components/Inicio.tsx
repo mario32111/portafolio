@@ -1,14 +1,20 @@
+// Inicio.tsx
 import { useState, useEffect, type FunctionComponent } from "react";
 import "./Inicio.css";
-import foto from '../assets/yo.jpg'; // Asegúrate de que esta ruta sea correcta
-import cvFile from '../assets/CV_Spanish.pdf';
-// Importa los íconos de Font Awesome y Material Design Icons
+import foto from '../assets/yo.jpg';
+import cvFile from '../assets/Mario_Garcia_CV_ES.pdf';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
-interface InicioProps { }
+// Definimos las props que Inicio espera de su padre (App.tsx)
+interface InicioProps {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  isInteractive: boolean;
+  isMobile: boolean; // ¡Nueva prop!
+}
 
-const Inicio: FunctionComponent<InicioProps> = () => {
+const Inicio: FunctionComponent<InicioProps> = ({ onMouseEnter, onMouseLeave, isInteractive, isMobile }) => {
   const text = "<Full Stack Developer />";
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,14 +25,18 @@ const Inicio: FunctionComponent<InicioProps> = () => {
         setDisplayedText((prevText) => prevText + text[currentIndex]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
       } else {
-        // Reiniciar la animación una vez que termina
         setCurrentIndex(0);
         setDisplayedText("");
       }
-    }, 150); // Velocidad de escritura
+    }, 150);
 
     return () => clearInterval(typingInterval);
   }, [currentIndex, text]);
+
+  // Clase CSS condicional para los elementos interactivos
+  // ¡Ahora solo se aplica si NO es móvil Y isInteractive es verdadero!
+  const interactiveElementClass = (!isMobile && isInteractive) ? 'interactive-element-hovered' : '';
+
 
   return (
     <div id="inicio" className="inicio-wrapper">
@@ -62,42 +72,46 @@ const Inicio: FunctionComponent<InicioProps> = () => {
             {displayedText}<span className="blinking-cursor">|</span>
           </h1>
 
-          {/* Sección de enlaces a redes sociales */}
           <div className="social-links-inicio">
-            {/* Enlace a GitHub */}
             <a
-              href="https://github.com/mario32111" // ¡REEMPLAZA ESTO CON TU LINK REAL DE GITHUB!
+              href="https://github.com/mario32111"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon-link-inicio"
+              className={`social-icon-link-inicio ${interactiveElementClass}`}
               aria-label="Mi perfil de GitHub"
+              onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
+              onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
             >
               <FaGithub size={30} />
             </a>
-            {/* Enlace a LinkedIn */}
             <a
-              href="https://www.linkedin.com/in/garc%C3%ADa-estevan%C3%A9-mario-alberto-5025b929b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" // ¡REEMPLAZA ESTO CON TU LINK REAL DE LINKEDIN!
+              href="https://www.linkedin.com/in/garc%C3%ADa-estevan%C3%A9-mario-alberto-5025b929b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon-link-inicio"
+              className={`social-icon-link-inicio ${interactiveElementClass}`}
               aria-label="Mi perfil de LinkedIn"
+              onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
+              onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
             >
               <FaLinkedin size={30} />
             </a>
-            {/* Enlace de Correo Electrónico */}
             <a
-              href="mailto:marioge44@gmail.com" // ¡REEMPLAZA ESTO CON TU CORREO REAL!
-              className="social-icon-link-inicio"
+              href="mailto:marioge44@gmail.com"
+              className={`social-icon-link-inicio ${interactiveElementClass}`}
               aria-label="Enviar un correo electrónico"
+              onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
+              onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
             >
               <MdEmail size={30} />
             </a>
           </div>
 
           <a
-            href={cvFile} // Ajusta esta ruta si tu CV está en otro lugar (ej. '/assets/Mario-Garcia-CV.pdf')
-            download="CV_Spanish.pdf" // Este atributo sugiere al navegador que descargue el archivo y proporciona un nombre de archivo predeterminado
-            className="cv-button"
+            href={cvFile}
+            download="CV_Spanish.pdf"
+            className={`cv-button ${interactiveElementClass}`}
+            onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
+            onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
           >
             <span>Descargar CV</span>
             <svg width="15px" height="15px" viewBox="0 0 24 24" fill="none">

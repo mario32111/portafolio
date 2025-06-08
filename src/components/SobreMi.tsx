@@ -1,9 +1,18 @@
 import { type FunctionComponent } from "react";
 import "./SobreMi.css"; // Importa el archivo de estilos
 
-interface SobreMiProps {}
+// Definimos las props que SobreMi espera
+interface SobreMiProps {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  isInteractive: boolean;
+  isMobile: boolean; // <-- ¡Nueva prop!
+}
 
-const SobreMi: FunctionComponent<SobreMiProps> = () => {
+const SobreMi: FunctionComponent<SobreMiProps> = ({ onMouseEnter, onMouseLeave, isInteractive, isMobile }) => {
+  // Clase CSS condicional para los elementos interactivos
+  const interactiveClass = (!isMobile && isInteractive) ? 'interactive-element-hovered' : '';
+
   const softSkills = [
     "Comunicación Efectiva",
     "Trabajo en Equipo",
@@ -38,7 +47,11 @@ const SobreMi: FunctionComponent<SobreMiProps> = () => {
       <h2 className="sobre-mi-title">Sobre Mí</h2>
       <div className="sobre-mi-content">
         {/* Sección: Quién Soy */}
-        <div className="sobre-mi-section-card who-am-i">
+        <div
+          className={`sobre-mi-section-card who-am-i ${interactiveClass}`} // Aplica la clase condicional aquí
+          onMouseEnter={!isMobile ? onMouseEnter : undefined} // Desactiva en móvil
+          onMouseLeave={!isMobile ? onMouseLeave : undefined} // Desactiva en móvil
+        >
           <h3 className="card-title">¿Quién Soy?</h3>
           <p>
             Me llamo Mario Garcia, un apasionado desarrollador Full Stack con experiencia en construir aplicaciones web robustas y escalables. Mi viaje en la programación comenzó con la curiosidad de entender cómo funcionan las cosas en la web, y pronto se transformó en una vocación por crear soluciones innovadoras que impacten positivamente a los usuarios.
@@ -61,7 +74,11 @@ const SobreMi: FunctionComponent<SobreMiProps> = () => {
         </div>
 
         {/* Sección: Soft Skills */}
-        <div className="sobre-mi-section-card soft-skills">
+        <div
+          className={`sobre-mi-section-card soft-skills ${interactiveClass}`} // Aplica la clase condicional aquí
+          onMouseEnter={!isMobile ? onMouseEnter : undefined} // Desactiva en móvil
+          onMouseLeave={!isMobile ? onMouseLeave : undefined} // Desactiva en móvil
+        >
           <h3 className="card-title">Soft Skills</h3>
           <ul className="soft-skills-list">
             {softSkills.map((skill, index) => (
@@ -73,7 +90,11 @@ const SobreMi: FunctionComponent<SobreMiProps> = () => {
         </div>
 
         {/* Sección: Trayectoria de Estudios (Línea del Tiempo) */}
-        <div className="sobre-mi-section-card education-timeline">
+        <div
+          className={`sobre-mi-section-card education-timeline ${interactiveClass}`} // Aplica la clase condicional aquí
+          onMouseEnter={!isMobile ? onMouseEnter : undefined} // Desactiva en móvil
+          onMouseLeave={!isMobile ? onMouseLeave : undefined} // Desactiva en móvil
+        >
           <h3 className="card-title">Trayectoria de Estudios</h3>
           <div className="timeline-container">
             {educationTimeline.map((event, index) => (
@@ -94,4 +115,4 @@ const SobreMi: FunctionComponent<SobreMiProps> = () => {
   );
 };
 
-export default SobreMi; 
+export default SobreMi;

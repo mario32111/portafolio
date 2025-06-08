@@ -1,9 +1,17 @@
 import { type FunctionComponent, useState } from "react";
 import "./Contacto.css";
 
-interface ContactoProps {}
+interface ContactoProps {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  isInteractive: boolean;
+  isMobile: boolean; // <-- ¡Agregamos esta prop!
+}
 
-const Contacto: FunctionComponent<ContactoProps> = () => {
+const Contacto: FunctionComponent<ContactoProps> = ({ onMouseEnter, onMouseLeave, isInteractive, isMobile }) => {
+  // La clase interactiva solo se aplica si NO es móvil y isInteractive es verdadero
+  const interactiveClass = (!isMobile && isInteractive) ? 'interactive-element-hovered' : '';
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -142,8 +150,11 @@ const Contacto: FunctionComponent<ContactoProps> = () => {
 
         <button
           type="submit"
-          className="submit-button"
+          className={`submit-button ${interactiveClass}`}
           disabled={isSubmitting}
+          // ¡Desactivamos onMouseEnter y onMouseLeave en móvil!
+          onMouseEnter={!isMobile ? onMouseEnter : undefined}
+          onMouseLeave={!isMobile ? onMouseLeave : undefined}
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center">

@@ -17,7 +17,6 @@ const navItems: NavItem[] = [
     { label: "CONTACTO", href: "contacto" }
 ];
 
-// Nueva interfaz para las propiedades de cada "gota"
 interface Ripple {
     id: number;
     x: number;
@@ -25,18 +24,31 @@ interface Ripple {
     color: string;
 }
 
-const NavBar: React.FC = () => {
+// Definimos las props que NavBar espera de su padre (App.tsx)
+interface NavBarProps {
+    isInteractive: boolean; // Recibimos el estado global del cursor
+    onMouseEnterGlobal: () => void; // Función para notificar a App.tsx de un mouseEnter
+    onMouseLeaveGlobal: () => void; // Función para notificar a App.tsx de un mouseLeave
+    isMobile: boolean; // Prop para saber si es móvil
+}
+
+const NavBar: React.FC<NavBarProps> = ({ isInteractive, onMouseEnterGlobal, onMouseLeaveGlobal, isMobile }) => {
     const [activeItem, setActiveItem] = useState<string>("INICIO");
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+
+    // --- CAMBIO CLAVE AQUÍ: Inicializar isDarkMode directamente desde localStorage ---
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return savedTheme === 'dark'; // Devuelve true si el tema guardado es 'dark', de lo contrario false
+    });
+    // --- FIN DEL CAMBIO CLAVE ---
+
     const cursorRef = useRef<HTMLDivElement>(null);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const [trail, setTrail] = useState<{ x: number; y: number; time: number; color: string }[]>([]);
-    const [isInteractive, setIsInteractive] = useState(false);
-    // Nuevo estado para almacenar las gotas
-    const [ripples, setRipples] = useState<Ripple[]>([]); // <--- AÑADIR ESTA LÍNEA
+    const [ripples, setRipples] = useState<Ripple[]>([]);
 
-    // Efecto para controlar la clase 'menu-open' en el body
+    // Efecto para controlar la clase 'menu-open' en el body (sin cambios)
     useEffect(() => {
         if (isMenuOpen) {
             document.body.classList.add('menu-open');
@@ -45,87 +57,83 @@ const NavBar: React.FC = () => {
         }
     }, [isMenuOpen]);
 
-    // Efecto para aplicar las clases de tema y guardar en localStorage
+    // --- CAMBIO CLAVE AQUÍ: Este efecto ahora maneja tanto la aplicación de clases como el guardado en localStorage ---
+    // Se ejecutará en el montaje inicial (usando el valor de isDarkMode inicializado) y cada vez que isDarkMode cambie.
     useEffect(() => {
         if (isDarkMode) {
             document.body.classList.add('dark-mode');
             document.body.classList.remove('light-mode');
-            localStorage.setItem('theme', 'dark');
         } else {
             document.body.classList.add('light-mode');
             document.body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
         }
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light'); // Guarda el estado actual en localStorage
     }, [isDarkMode]);
+    // --- ELIMINAMOS EL useEffect ANTERIOR DE CARGA INICIAL (el que tenía dependencias vacías []) ---
+    // (Este estaba después del `useEffect` de `isMenuOpen`, ahora está unificado con el de `isDarkMode`.)
 
-    // Efecto para cargar la preferencia de tema al inicio
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            setIsDarkMode(true);
-        } else {
-            setIsDarkMode(false);
-        }
-    }, []);
 
-    // Efecto para el seguimiento del cursor y el rastro
+    // Efecto para el seguimiento del cursor y el rastro (sin cambios en la lógica de mobile)
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
             const { clientX, clientY } = event;
             setCursorPosition({ x: clientX, y: clientY });
 
-            // Añadir el punto actual al rastro
             setTrail(prevTrail => [
                 ...prevTrail,
                 { x: clientX, y: clientY, time: Date.now(), color: isDarkMode ? '#FFF' : '#000' }
             ]);
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
-
-        // Ocultar el cursor del sistema
-        // document.body.style.cursor = 'none'; // Esto ya lo manejas con `* { cursor: none !important; }` en CSS
-
-        const cleanup = () => {
+        if (isMobile) {
             window.removeEventListener('mousemove', handleMouseMove);
-            // document.body.style.cursor = 'default'; // No es necesario si el cursor se oculta globalmente
+            setTrail([]);
+            return;
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
         };
+    }, [isDarkMode, isMobile]);
 
-        return cleanup;
-    }, [isDarkMode]);
-
-    // Efecto para limpiar el rastro
+    // Efecto para limpiar el rastro (sin cambios en la lógica de mobile)
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            setTrail(prevTrail => prevTrail.filter(p => Date.now() - p.time < 200));
-        }, 16);
+        let intervalId: NodeJS.Timeout;
+        if (!isMobile) {
+            intervalId = setInterval(() => {
+                setTrail(prevTrail => prevTrail.filter(p => Date.now() - p.time < 200));
+            }, 16);
+        }
 
-        return () => clearInterval(intervalId);
-    }, []);
+        return () => {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        };
+    }, [isMobile]);
 
-    // EFECTO PARA LA ANIMACIÓN DE CLICK (GOTAS) <--- AÑADIR ESTE NUEVO useEffect
+    // Efecto para la animación de click (gotas) (sin cambios)
     useEffect(() => {
         const handleClickEffect = (event: MouseEvent) => {
             const newRipple: Ripple = {
-                id: Date.now(), // Un ID único para cada gota
+                id: Date.now(),
                 x: event.clientX,
                 y: event.clientY,
-                color: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' // Color de la gota según el tema
+                color: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
             };
             setRipples(prevRipples => [...prevRipples, newRipple]);
 
-            // Eliminar la gota del DOM después de que su animación termine
             setTimeout(() => {
                 setRipples(prevRipples => prevRipples.filter(ripple => ripple.id !== newRipple.id));
-            }, 600); // Duración de la animación en CSS
+            }, 600);
         };
 
         window.addEventListener('click', handleClickEffect);
-
         return () => {
             window.removeEventListener('click', handleClickEffect);
         };
-    }, [isDarkMode]); // Dependencia para que el color de la gota se actualice con el tema
+    }, [isDarkMode]);
 
     const handleClick = (href: string, label: string, event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
@@ -143,7 +151,7 @@ const NavBar: React.FC = () => {
         setIsDarkMode(!isDarkMode);
     };
 
-    // Efecto del scroll para la navbar
+    // Efecto del scroll para la navbar (sin cambios)
     useEffect(() => {
         const handleScroll = () => {
             const navbar = document.querySelector(".navbar");
@@ -155,80 +163,77 @@ const NavBar: React.FC = () => {
         };
 
         window.addEventListener("scroll", handleScroll);
-
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
-    const handleMouseEnter = () => {
-        setIsInteractive(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsInteractive(false);
-    };
+    // La clase CSS condicional para los elementos interactivos que dependen de isInteractive
+    // Ahora solo se aplica si NO es móvil.
+    const interactiveElementClass = (!isMobile && isInteractive) ? 'interactive-element-hovered' : '';
 
     return (
         <>
-            {/* Elemento del cursor principal */}
-            <div
-                ref={cursorRef}
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`,
-                    pointerEvents: 'none',
-                    zIndex: 1000,
-                    width: isInteractive ? '24px' : '8px', // Cambia el tamaño
-                    height: isInteractive ? '24px' : '8px',
-                    borderRadius: '50%',
-                    backgroundColor: isDarkMode ? '#FFF' : '#000',
-                    transition: 'transform 0.05s ease-out, width 0.2s ease-out, height 0.2s ease-out', // Añade transiciones
-                    boxShadow: isInteractive ? '0 0 15px rgba(255, 255, 255, 0.8)' : 'none', // Añade sombra
-                }}
-            />
-            {/* Elementos del rastro */}
-            {trail.map((point, index) => (
-                <div
-                    key={index}
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        transform: `translate(${point.x}px, ${point.y}px)`,
-                        pointerEvents: 'none',
-                        zIndex: 999,
-                        width: '4px',
-                        height: '4px',
-                        borderRadius: '50%',
-                        backgroundColor: point.color,
-                        opacity: 1 - (Date.now() - point.time) / 200,
-                        transition: 'opacity 0.1s ease-out',
-                    }}
-                />
-            ))}
+            {/* Solo renderiza el cursor personalizado y el rastro si NO es un dispositivo móvil */}
+            {!isMobile && (
+                <>
+                    {/* Elemento del cursor principal */}
+                    <div
+                        ref={cursorRef}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`,
+                            pointerEvents: 'none',
+                            zIndex: 1000,
+                            width: isInteractive ? '24px' : '8px',
+                            height: isInteractive ? '24px' : '8px',
+                            borderRadius: '50%',
+                            backgroundColor: isDarkMode ? '#FFF' : '#000',
+                            transition: 'transform 0.05s ease-out, width 0.2s ease-out, height 0.2s ease-out, box-shadow 0.2s ease-out',
+                            boxShadow: isInteractive ? `0 0 15px ${isDarkMode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.4)'}` : 'none',
+                        }}
+                    />
+                    {/* Elementos del rastro */}
+                    {trail.map((point, index) => (
+                        <div
+                            key={index}
+                            style={{
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                transform: `translate(${point.x}px, ${point.y}px)`,
+                                pointerEvents: 'none',
+                                zIndex: 999,
+                                width: '4px',
+                                height: '4px',
+                                borderRadius: '50%',
+                                backgroundColor: point.color,
+                                opacity: 1 - (Date.now() - point.time) / 200,
+                                transition: 'opacity 0.1s ease-out',
+                            }}
+                        />
+                    ))}
+                </>
+            )}
 
-            {/* Renderizado de las gotas de agua/ondas de click */}
-            {/* <--- AÑADIR ESTE BLOQUE */}
+            {/* Renderizado de las gotas de agua/ondas de click (siempre se renderizan) */}
             {ripples.map(ripple => (
                 <div
                     key={ripple.id}
-                    className="click-ripple" // Aplicamos esta clase para los estilos CSS
+                    className="click-ripple"
                     style={{
                         position: 'fixed',
                         top: ripple.y,
                         left: ripple.x,
                         backgroundColor: ripple.color,
-                        pointerEvents: 'none', // Crucial para que no bloquee los clics reales
-                        zIndex: 998, // Asegúrate de que esté debajo del cursor y el rastro
-                        transform: 'translate(-50%, -50%)', // Centra la gota en el punto del click
+                        pointerEvents: 'none',
+                        zIndex: 998,
+                        transform: 'translate(-50%, -50%)',
                     }}
                 />
             ))}
-            {/* FIN DEL BLOQUE A AÑADIR */}
-
 
             <nav className="navbar">
                 <div>
@@ -238,8 +243,8 @@ const NavBar: React.FC = () => {
                 <button
                     className="hamburger-button"
                     onClick={toggleMenu}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    onMouseEnter={!isMobile ? onMouseEnterGlobal : undefined}
+                    onMouseLeave={!isMobile ? onMouseLeaveGlobal : undefined}
                 >
                     <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}></div>
                     <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}></div>
@@ -248,7 +253,11 @@ const NavBar: React.FC = () => {
 
                 <ul className={`navbar-list ${isMenuOpen ? 'open' : ''}`}>
                     {navItems.map((item, index) => (
-                        <li key={index} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <li
+                            key={index}
+                            onMouseEnter={!isMobile ? onMouseEnterGlobal : undefined}
+                            onMouseLeave={!isMobile ? onMouseLeaveGlobal : undefined}
+                        >
                             <a
                                 href={`#${item.href}`}
                                 className={activeItem === item.label ? "active" : ""}
@@ -258,7 +267,11 @@ const NavBar: React.FC = () => {
                             </a>
                         </li>
                     ))}
-                    <div className="theme-switch-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <div
+                        className="theme-switch-container"
+                        onMouseEnter={!isMobile ? onMouseEnterGlobal : undefined}
+                        onMouseLeave={!isMobile ? onMouseLeaveGlobal : undefined}
+                    >
                         {isDarkMode ? <FaSun className="theme-icon sun-icon" /> : <FaMoon className="theme-icon moon-icon" />}
                         <label className="theme-switch">
                             <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} />
