@@ -170,8 +170,6 @@ const NavBar: React.FC<NavBarProps> = ({ isInteractive, onMouseEnterGlobal, onMo
 
     // La clase CSS condicional para los elementos interactivos que dependen de isInteractive
     // Ahora solo se aplica si NO es móvil.
-    const interactiveElementClass = (!isMobile && isInteractive) ? 'interactive-element-hovered' : '';
-
     return (
         <>
             {/* Solo renderiza el cursor personalizado y el rastro si NO es un dispositivo móvil */}
