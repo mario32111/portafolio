@@ -40,7 +40,6 @@ const Tecnologias: FunctionComponent<TecnologiasProps> = ({ onMouseEnter, onMous
     { name: "JavaScript", icon: IoLogoJavascript }, // O SiJavascript
     { name: "TypeScript", icon: SiTypescript },
     { name: "Tailwind CSS", icon: SiTailwindcss },
-    { name: "Sass", icon: FaSass },
     { name: "React Native", icon: FaReact }, // Reutilizamos FaReact para React Native
 
     // Backend / Runtime

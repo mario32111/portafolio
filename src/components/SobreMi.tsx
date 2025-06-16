@@ -54,23 +54,21 @@ const SobreMi: FunctionComponent<SobreMiProps> = ({ onMouseEnter, onMouseLeave, 
         >
           <h3 className="card-title">¿Quién Soy?</h3>
           <p>
-            Me llamo Mario Garcia, un apasionado desarrollador Full Stack con experiencia en construir aplicaciones web robustas y escalables. Mi viaje en la programación comenzó con la curiosidad de entender cómo funcionan las cosas en la web, y pronto se transformó en una vocación por crear soluciones innovadoras que impacten positivamente a los usuarios.
+            Soy Mario García, <strong>desarrollador Full Stack</strong> apasionado por construir soluciones web robustas con tecnologías como <strong>React, Next.js, Node.js, Express</strong> y <strong>Nest.js</strong>. Me especializo en el desarrollo de <strong>APIs seguras</strong>, gestión de bases de datos relacionales <strong>(PostgreSQL, MySQL)</strong> y <strong>no relacionales (MongoDB)</strong>, así como en despliegue con herramientas como <strong>Docker</strong> y <strong>AWS</strong>.
           </p>
           <p>
-            He trabajado extensamente con tecnologías del ecosistema React.js y Node.js, dominando tanto el frontend con librerías como Next.js y Redux, así como el backend con Express.js y Nest.js. Soy un firme creyente en las buenas prácticas de desarrollo, la limpieza del código y la importancia de un diseño responsivo y centrado en el usuario.
+            Mi camino en la programación comenzó con la curiosidad por entender cómo funcionan las cosas en la web, y pronto se transformó en una vocación por crear soluciones innovadoras que impacten positivamente a los usuarios.
           </p>
           <p>
-            Mi experiencia abarca desde el diseño de bases de datos relacionales (PostgreSQL, MySQL) y no relacionales (MongoDB), hasta la implementación de APIs RESTful seguras con JWT. También tengo conocimientos en despliegue y CI/CD con Docker, AWS, GCP y GitHub Actions, lo que me permite llevar proyectos desde la concepción hasta la producción.
+            Me considero proactivo, autodidacta y orientado a resultados, siempre en busca de nuevos aprendizajes y desafíos. Disfruto trabajar en equipo y contribuir al crecimiento colectivo.
           </p>
           <p>
-            Me considero una persona proactiva, autodidacta y orientada a resultados, siempre buscando aprender nuevas tecnologías y enfrentar nuevos desafíos. Disfruto colaborar en equipos y contribuir al crecimiento colectivo.
+            Fuera del código, me gusta jugar videojuegos, hacer ejercicio y escuchar música, lo que me ayuda a mantener la mente fresca y la creatividad activa.
           </p>
           <p>
-            Fuera del código, me gusta jugar videojuegos, hacer ejercicio, escuchar musica, lo que me ayuda a mantener la mente fresca y la creatividad activa.
+            ¡Estoy entusiasmado por seguir creciendo y contribuir a proyectos que marquen la diferencia!
           </p>
-          <p>
-            ¡Estoy emocionado por las oportunidades de seguir creciendo y contribuir a proyectos que marquen la diferencia!
-          </p>
+
         </div>
 
         {/* Sección: Soft Skills */}
