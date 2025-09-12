@@ -3,14 +3,14 @@ import "./Tecnologias.css"; // Importa el archivo de estilos para este component
 
 // --- Importa los íconos de react-icons que vas a utilizar ---
 import {
-  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaGithub, FaDocker, FaSass,
+  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaGithub, FaDocker,
   FaAws, FaLinux, FaPython, FaJava, FaFigma
 } from 'react-icons/fa';
 
 import {
   SiNextdotjs, SiRedux, SiAngular, SiDotnet, SiExpress, SiNestjs, SiTailwindcss,
   SiPostgresql, SiMysql, SiMongodb, SiRabbitmq, SiFirebase, SiTypescript,
-  SiCplusplus, SiGnubash, SiSharp, SiReactquery,
+  SiCplusplus, SiGnubash, SiSharp, SiReactquery, SiSupabase, SiJavascript, SiRedis
 } from 'react-icons/si';
 
 import { IoLogoJavascript } from 'react-icons/io';
@@ -37,7 +37,7 @@ const Tecnologias: FunctionComponent<TecnologiasProps> = ({ onMouseEnter, onMous
     { name: "Angular", icon: SiAngular },
     { name: "HTML", icon: FaHtml5 },
     { name: "CSS", icon: FaCss3Alt },
-    { name: "JavaScript", icon: IoLogoJavascript }, // O SiJavascript
+    { name: "JavaScript", icon: SiJavascript }, // O SiJavascript
     { name: "TypeScript", icon: SiTypescript },
     { name: "Tailwind CSS", icon: SiTailwindcss },
     { name: "React Native", icon: FaReact }, // Reutilizamos FaReact para React Native
@@ -69,6 +69,8 @@ const Tecnologias: FunctionComponent<TecnologiasProps> = ({ onMouseEnter, onMous
     { name: "MongoDB", icon: SiMongodb },
     { name: "RabbitMQ", icon: SiRabbitmq },
     { name: "Firebase", icon: SiFirebase },
+    { name: "Redis", icon: SiRedis },
+    { name: "Supabase", icon:  SiSupabase},
 
     // Diseño
     { name: "Figma", icon: FaFigma },

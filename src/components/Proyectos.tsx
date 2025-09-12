@@ -9,8 +9,8 @@ import p2 from "../assets/p2.jpg";
 import p3 from "../assets/p3.jpg";
 import p4 from "../assets/p4.png";
 import p5 from "../assets/p5.png";
-
-
+import p6 from "../assets/p6.png";
+import p7 from "../assets/p7.png";
 // Definimos las props que Proyectos espera de su padre (App.tsx)
 interface ProyectosProps {
   onMouseEnter: () => void;
@@ -20,10 +20,11 @@ interface ProyectosProps {
 }
 
 const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLeave, isInteractive, isMobile }) => {
+  // Lista de proyectos destacados con título, descripción, tecnologías, imágenes y enlaces relevantes
   const projects = [
     {
       title: "HydroLink – Sistema de riego inteligente",
-      description: "Desarrollo de un sistema automatizado de riego que ajusta los ciclos de riego en función de los datos recolectados por sensores de humedad y temperatura del suelo. Permite una gestión eficiente del agua mediante controladores con conectividad móvil que transmiten la información en tiempo real. Incluye procesamiento y análisis de datos en tiempo real para optimizar el riego, y una arquitectura distribuida con aplicación móvil, llaves inteligentes de campo, y API REST alojada en AWS. Se implementaron flujos de CI/CD.",
+      description: "Sistema IoT integral para la gestión automatizada y eficiente del riego agrícola. Utiliza sensores de humedad y temperatura para recopilar datos en tiempo real, optimizando el uso del agua mediante algoritmos inteligentes. Incluye una arquitectura distribuida con dispositivos de campo conectados, backend escalable en AWS, API REST, y una app móvil para monitoreo y control remoto. Implementa flujos CI/CD, comunicación MQTT y seguridad con JWT.",
       techniques: ["React Native", "Docker", "JWT", "Redux", "MQTT", "TypeScript", "JavaScript", "PostgreSQL", "Express", "Sequelize", "C++", "Docker", "CI/CD", "AWS"],
       imageUrl: p2,
       githubUrls: [
@@ -34,8 +35,50 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
       liveUrl: null,
     },
     {
+      title: "Microservices-TechShop",
+      description: "Plataforma en desarollo de un e-commerce de tecnología basada en microservicios, con backend en Nest.js y frontend en Next.js. Ofrece autenticación segura, gestión de productos, carrito de compras y administración de usuarios. Utiliza Docker para despliegue, Redis para caché y PostgreSQL como base de datos. Incluye documentación Swagger y flujos de integración continua.",
+      techniques: ["Nest.js", "Next.js", "JWT", "Docker", "Swagger", "PostgreSQL", "Node.js", "GitHub", "Postman", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Redis"],
+      imageUrl: p7,
+      githubUrls: [
+        { name: "Backend", url: "https://github.com/mario32111/tech-shop-backend.git" },
+        { name: "Frontend", url: "https://github.com/mario32111/tech-shop-frontend.git" }
+      ],
+      liveUrl: null,
+    },
+    {
+      title: "KapraDesign – Sistema de seguimiento de pedidos y procesos",
+      description: "Solución móvil freelance para la gestión y seguimiento de pedidos y procesos internos de una empresa textil. Permite visualizar el flujo de trabajo, controlar estados de pedidos y facilitar la comunicación entre áreas. Incluye app móvil multiplataforma, backend en Supabase y aplicación de escritorio para administración.",
+      techniques: ["React Native", "TypeScript", "Expo", "Supabase"],
+      imageUrl: p3,
+      githubUrls: [
+        { name: "Repositorio", url: "https://github.com/mario32111/KapraDesign" },
+      ],
+      liveUrl: null,
+    },
+    {
+      title: "Crud .Net(Windows Forms)",
+      description: "Aplicación de escritorio desarrollada en .NET con Windows Forms y una base de datos en SQL Server  para la gestión de registros mediante operaciones CRUD. Ofrece una interfaz intuitiva para administrar información, búsqueda avanzada y validación de datos, facilitando la gestión eficiente de recursos en entornos empresariales.",
+      techniques: ["C#", ".NET", "Windows Forms", "SQL Server"],
+      imageUrl: p6,
+      githubUrls: [
+        { name: "Repositorio", url: "https://github.com/mario32111/ProyectoTBD.git" },
+      ],
+      liveUrl: null,
+    },
+    {
+      title: "ArtChallange",
+      description: "Red social web para artistas, centrada en retos semanales de arte. Permite a los usuarios crear, editar y compartir obras, participar en desafíos, y recibir retroalimentación de la comunidad. Cuenta con autenticación, perfiles personalizados y una interfaz moderna y responsiva.",
+      techniques: ["Angular", "Firebase", "HTML", "CSS", "TypeScript", "Bootstrap"],
+      imageUrl: p5,
+      githubUrls: [
+        { name: "Repositorio", url: "https://github.com/mario32111/ArtChallange" },
+      ],
+      liveUrl: "https://art-challange.web.app/",
+    },
+
+    {
       title: "ProyectoExpotec – Aplicación web de preguntas sobre informática",
-      description: "Aplicación web interactiva y llamativa desarrollada para un evento de la universidad, con el objetivo de crear una experiencia divertida para estudiantes de preparatoria. Permite realizar preguntas aleatorias sobre informática y visualizar los resultados en tiempo real. Manejó alrededor de 50 usuarios activos simultáneamente y fue desarrollado en una semana, recibiendo una excelente acogida por su interfaz amigable y dinámica.",
+      description: "Aplicación web interactiva desarrollada para eventos universitarios, enfocada en la gamificación del aprendizaje de informática. Permite a los usuarios responder preguntas aleatorias, visualizar resultados en tiempo real y competir en rankings. Soporta múltiples usuarios simultáneos y destaca por su interfaz dinámica y amigable.",
       techniques: ["React", "TypeScript", "PostgreSQL", "Redux", "Express", "Sequelize", "HTML", "CSS", "Render"],
       imageUrl: p1,
       githubUrls: [
@@ -45,41 +88,8 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
       liveUrl: "https://pagina-expotec.onrender.com/",
     },
     {
-      title: "KapraDesign – Sistema de seguimiento de pedidos y procesos",
-      description: "Sistema desarrollado para plataformas móviles con el objetivo de mostrar y controlar el flujo de trabajo de la empresa, ligado directamente a sus pedidos. Fue desarrollado de forma freelance, incluyendo análisis de necesidades e interacción directa con el cliente. El sistema está conformado por una aplicación móvil, una API REST, una base de datos y una aplicación de escritorio. Aunque no fue implementado comercialmente, sirvió como prueba de concepto y tiene alta posibilidad de implementarse en futuro.",
-      techniques: ["React Native", "TypeScript", "Expo"],
-      imageUrl: p3,
-      githubUrls: [
-        { name: "Repositorio", url: "https://github.com/mario32111/KapraDesign" },
-      ],
-      liveUrl: null,
-    },
-    {
-      title: "ArtChallange",
-      description: "Aplicación web estilo red social orientada a retos semanales de arte, con una interfaz intuitiva y herramientas avanzadas para artistas. Permite a los usuarios crear, editar y compartir sus obras de arte en una comunidad en línea.",
-      techniques: ["Angular", "Firebase", "HTML", "CSS", "TypeScript", "Bootstrap"],
-      imageUrl: p5,
-      githubUrls: [
-        { name: "Repositorio", url: "https://github.com/mario32111/ArtChallange" },
-      ],
-      liveUrl: "https://art-challange.web.app/",
-    },
-    {
-      title: "Microservices-Superflights",
-      description: "API REST para la gestión de vuelos desarrollada a lo largo de un curso, utilizando una arquitectura de microservicios. Permite a los usuarios buscar y reservar vuelos de manera eficiente, con un diseño moderno y funcional.",
-      techniques: ["Nest.js", "AWS", "JWT", "Docker", "Swagger", "MongoDB", "Node.js", "GitHub", "Postman"],
-      imageUrl: p3,
-      githubUrls: [
-        { name: "Gateway", url: "https://github.com/mario32111/superFlights-apiGateway" },
-        { name: "Users Service", url: "https://github.com/mario32111/superFlights-microserviceUsers" },
-        { name: "Flights Service", url: "https://github.com/mario32111/superFlights-microserviceFlights" },
-        { name: "Passengers Service", url: "https://github.com/mario32111/superFlights-microserviceFlights" }
-      ],
-      liveUrl: null,
-    },
-    {
       title: "MyEconomy",
-      description: "Maquetación de una aplicación web para el control de gastos personales, con un diseño atractivo y funcional. La aplicación permite a los usuarios llevar un registro de sus gastos e ingresos, ayudando a gestionar su economía personal de manera eficiente.",
+      description: "Maquetacion de aplicación web para el control y visualización de gastos personales, diseñada con enfoque en usabilidad y experiencia de usuario. Permite registrar ingresos y egresos, visualizar estadísticas y mantener un historial financiero, ayudando a los usuarios a gestionar su economía de forma sencilla.",
       techniques: ["React Native", "React", "JavaScript", "CSS"],
       imageUrl: p4,
       githubUrls: [
