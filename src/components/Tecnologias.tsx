@@ -13,7 +13,6 @@ import {
   SiCplusplus, SiGnubash, SiSharp, SiReactquery, SiSupabase, SiJavascript, SiRedis
 } from 'react-icons/si';
 
-import { IoLogoJavascript } from 'react-icons/io';
 
 
 // Definimos las props que Tecnologias espera

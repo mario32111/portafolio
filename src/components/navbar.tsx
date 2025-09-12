@@ -99,7 +99,7 @@ const NavBar: React.FC<NavBarProps> = ({ isInteractive, onMouseEnterGlobal, onMo
 
     // Efecto para limpiar el rastro (sin cambios en la lógica de mobile)
     useEffect(() => {
-        let intervalId: NodeJS.Timeout;
+        let intervalId: number;
         if (!isMobile) {
             intervalId = setInterval(() => {
                 setTrail(prevTrail => prevTrail.filter(p => Date.now() - p.time < 200));
