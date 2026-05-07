@@ -54,10 +54,10 @@ const SobreMi: FunctionComponent<SobreMiProps> = ({ onMouseEnter, onMouseLeave, 
         >
           <h3 className="card-title">¿Quién Soy?</h3>
           <p>
-            Soy Mario García, <strong>desarrollador Full Stack</strong> apasionado por construir soluciones web robustas con tecnologías como <strong>React, Next.js, Node.js, Express</strong> y <strong>Nest.js</strong>. Me especializo en el desarrollo de <strong>APIs seguras</strong>, gestión de bases de datos relacionales <strong>(PostgreSQL, MySQL)</strong> y <strong>no relacionales (MongoDB)</strong>, así como en despliegue con herramientas como <strong>Docker</strong> y <strong>AWS</strong>.
+            Soy Mario García, <strong>desarrollador Full Stack</strong> apasionado por construir soluciones web robustas con tecnologías como <strong>React, Next.js, Node.js, Express</strong> y <strong>Nest.js</strong>. Me especializo en el desarrollo de <strong>plataformas seguras</strong>, gestión de bases de datos relacionales <strong>(PostgreSQL, MySQL)</strong> y <strong>no relacionales (MongoDB)</strong>, así como en despliegue con herramientas como <strong>Docker</strong> y <strong>AWS</strong>. Además, me apasiona integrar <strong>funcionalidades de Inteligencia Artificial</strong> en mis desarrollos, buscando siempre potenciar mis proyectos con soluciones inteligentes e innovadoras.
           </p>
           <p>
-            Mi camino en la programación comenzó con la curiosidad por entender cómo funcionan las cosas en la web, y pronto se transformó en una vocación por crear soluciones innovadoras que impacten positivamente a los usuarios.
+            Mi camino en la programación comenzó con la curiosidad por entender cómo funcionan las computadoras por dentro y por fuera, de pronto se transformó en una vocación por crear soluciones innovadoras que impacten positivamente a los usuarios.
           </p>
           <p>
             Me considero proactivo, autodidacta y orientado a resultados, siempre en busca de nuevos aprendizajes y desafíos. Disfruto trabajar en equipo y contribuir al crecimiento colectivo.

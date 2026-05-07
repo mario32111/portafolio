@@ -151,14 +151,33 @@ const NavBar: React.FC<NavBarProps> = ({ isInteractive, onMouseEnterGlobal, onMo
         setIsDarkMode(!isDarkMode);
     };
 
-    // Efecto del scroll para la navbar (sin cambios)
+    // Efecto del scroll para la navbar (clase 'scrolled' y Scroll Spy)
     useEffect(() => {
         const handleScroll = () => {
+            // 1. Manejo de la clase 'scrolled'
             const navbar = document.querySelector(".navbar");
             if (window.scrollY > 10) {
                 navbar?.classList.add("scrolled");
             } else {
                 navbar?.classList.remove("scrolled");
+            }
+
+            // 2. Lógica de Scroll Spy
+            const scrollPosition = window.scrollY + 200; // Ajuste para el alto de la navbar y margen
+            
+            // Recorremos los ítems de navegación para encontrar la sección activa
+            for (let i = navItems.length - 1; i >= 0; i--) {
+                const item = navItems[i];
+                const section = document.getElementById(item.href);
+                
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    // Si el scroll llegó a la sección, la marcamos como activa y salimos del bucle
+                    if (scrollPosition >= sectionTop) {
+                        setActiveItem(item.label);
+                        break;
+                    }
+                }
             }
         };
 

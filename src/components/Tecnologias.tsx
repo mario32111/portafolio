@@ -10,8 +10,12 @@ import {
 import {
   SiNextdotjs, SiRedux, SiAngular, SiDotnet, SiExpress, SiNestjs, SiTailwindcss,
   SiPostgresql, SiMysql, SiMongodb, SiRabbitmq, SiFirebase, SiTypescript,
-  SiCplusplus, SiGnubash, SiSharp, SiReactquery, SiSupabase, SiJavascript, SiRedis
+  SiCplusplus, SiSharp, SiSupabase, SiJavascript, SiRedis, SiElectron,
+  SiFlutter, SiAndroidstudio, SiKotlin, SiGooglecloud, SiGithubactions, SiJsonwebtokens,
 } from 'react-icons/si';
+
+import { TbBrandReactNative, TbApi } from 'react-icons/tb';
+import { FaWindows } from 'react-icons/fa';
 
 
 
@@ -39,7 +43,11 @@ const Tecnologias: FunctionComponent<TecnologiasProps> = ({ onMouseEnter, onMous
     { name: "JavaScript", icon: SiJavascript }, // O SiJavascript
     { name: "TypeScript", icon: SiTypescript },
     { name: "Tailwind CSS", icon: SiTailwindcss },
-    { name: "React Native", icon: FaReact }, // Reutilizamos FaReact para React Native
+    { name: "React Native", icon: TbBrandReactNative },
+    { name: "Electron", icon: SiElectron },
+    { name: "Flutter", icon: SiFlutter },
+    { name: "Android Studio", icon: SiAndroidstudio },
+    { name: "Kotlin", icon: SiKotlin },
 
     // Backend / Runtime
     { name: ".NET (Windows Forms)", icon: SiDotnet },
@@ -53,16 +61,17 @@ const Tecnologias: FunctionComponent<TecnologiasProps> = ({ onMouseEnter, onMous
 
     // Cloud / DevOps / Herramientas
     { name: "AWS", icon: FaAws },
-    { name: "GCP", icon: SiGnubash },
+    { name: "GCP", icon: SiGooglecloud },
+    { name: "Azure", icon: FaWindows },
     { name: "Docker", icon: FaDocker },
     { name: "Git", icon: FaGitAlt },
     { name: "GitHub", icon: FaGithub },
-    { name: "GitHub Actions", icon: FaGithub },
+    { name: "GitHub Actions", icon: SiGithubactions },
     { name: "Linux", icon: FaLinux },
 
     // Bases de Datos / APIs / Mensajería
-    { name: "REST API", icon: SiReactquery },
-    { name: "JWT", icon: SiReactquery },
+    { name: "REST API", icon: TbApi },
+    { name: "JWT", icon: SiJsonwebtokens },
     { name: "PostgreSQL", icon: SiPostgresql },
     { name: "MySQL", icon: SiMysql },
     { name: "MongoDB", icon: SiMongodb },
