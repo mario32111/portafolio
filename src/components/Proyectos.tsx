@@ -108,7 +108,7 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
     if (sliderRef.current) {
       const card = sliderRef.current.querySelector('.proyecto-card');
       const gap = parseInt(window.getComputedStyle(sliderRef.current).gap) || 0;
-      const step = card ? card.clientWidth + gap : 648;
+      const step = card ? card.clientWidth + gap : 698;
       const scrollAmount = direction === 'left' ? -step : step;
       sliderRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
@@ -118,7 +118,7 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
     if (sliderRef.current) {
       const card = sliderRef.current.querySelector('.proyecto-card');
       const gap = parseInt(window.getComputedStyle(sliderRef.current).gap) || 0;
-      const step = card ? card.clientWidth + gap : 648;
+      const step = card ? card.clientWidth + gap : 698;
       const index = Math.round(sliderRef.current.scrollLeft / step);
       setActiveIndex(index);
     }
@@ -151,8 +151,8 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
 
         <div className="proyectos-slider" ref={sliderRef}>
           {projects.map((project, index) => (
-            <article 
-              key={index} 
+            <article
+              key={index}
               className={`proyecto-card ${activeIndex === index ? 'active' : 'inactive'} ${interactiveClass}`}
               onMouseEnter={!isMobile ? onMouseEnter : undefined}
               onMouseLeave={!isMobile ? onMouseLeave : undefined}
@@ -220,13 +220,21 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
               if (sliderRef.current) {
                 const card = sliderRef.current.querySelector('.proyecto-card');
                 const gap = parseInt(window.getComputedStyle(sliderRef.current).gap) || 0;
-                const step = card ? card.clientWidth + gap : 648;
+                const step = card ? card.clientWidth + gap : 698;
                 sliderRef.current.scrollTo({ left: index * step, behavior: 'smooth' });
               }
             }}
           />
         ))}
       </div>
+
+      {isMobile && (
+        <div className="swipe-hint">
+          <FaChevronLeft className="swipe-icon" size={12} />
+          <span>Desliza para ver más proyectos</span>
+          <FaChevronRight className="swipe-icon" size={12} />
+        </div>
+      )}
     </section>
   );
 };
