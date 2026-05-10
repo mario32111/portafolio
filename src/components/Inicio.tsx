@@ -2,7 +2,7 @@
 import { useState, useEffect, type FunctionComponent } from "react";
 import "./Inicio.css";
 import foto from '../assets/yo.jpg';
-import cvFile from '../assets/Mario_Garcia_CV_ES.pdf';
+import cvFile from '../assets/MarioGarcia_CV_2026.pdf';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
@@ -39,7 +39,7 @@ const Inicio: FunctionComponent<InicioProps> = ({ onMouseEnter, onMouseLeave, is
 
 
   return (
-    <div id="inicio" className="inicio-wrapper">
+    <div id="inicio" className="inicio-wrapper reveal reveal-inicio">
       <div className="binary-background">
         {[...Array(30)].map((_, i) => (
           <div
@@ -72,52 +72,54 @@ const Inicio: FunctionComponent<InicioProps> = ({ onMouseEnter, onMouseLeave, is
             {displayedText}<span className="blinking-cursor">|</span>
           </h1>
 
-          <div className="social-links-inicio">
+          <div className="inicio-actions">
+            <div className="social-links-inicio">
+              <a
+                href="https://github.com/mario32111"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`social-icon-link-inicio ${interactiveElementClass}`}
+                aria-label="Mi perfil de GitHub"
+                onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
+                onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
+              >
+                <FaGithub size={30} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/garc%C3%ADa-estevan%C3%A9-mario-alberto-5025b929b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`social-icon-link-inicio ${interactiveElementClass}`}
+                aria-label="Mi perfil de LinkedIn"
+                onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
+                onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
+              >
+                <FaLinkedin size={30} />
+              </a>
+              <a
+                href="mailto:marioge44@gmail.com"
+                className={`social-icon-link-inicio ${interactiveElementClass}`}
+                aria-label="Enviar un correo electrónico"
+                onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
+                onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
+              >
+                <MdEmail size={30} />
+              </a>
+            </div>
+
             <a
-              href="https://github.com/mario32111"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`social-icon-link-inicio ${interactiveElementClass}`}
-              aria-label="Mi perfil de GitHub"
+              href={cvFile}
+              download="MarioGarcia_CV_2026.pdf"
+              className={`cv-button ${interactiveElementClass}`}
               onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
               onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
             >
-              <FaGithub size={30} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/garc%C3%ADa-estevan%C3%A9-mario-alberto-5025b929b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`social-icon-link-inicio ${interactiveElementClass}`}
-              aria-label="Mi perfil de LinkedIn"
-              onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
-              onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
-            >
-              <FaLinkedin size={30} />
-            </a>
-            <a
-              href="mailto:marioge44@gmail.com"
-              className={`social-icon-link-inicio ${interactiveElementClass}`}
-              aria-label="Enviar un correo electrónico"
-              onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
-              onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
-            >
-              <MdEmail size={30} />
+              <span>Descargar CV</span>
+              <svg width="15px" height="15px" viewBox="0 0 24 24" fill="none">
+                <path d="M12 15V3M12 15L8 11M12 15L16 11M21 15V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </a>
           </div>
-
-          <a
-            href={cvFile}
-            download="CV_Spanish.pdf"
-            className={`cv-button ${interactiveElementClass}`}
-            onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
-            onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
-          >
-            <span>Descargar CV</span>
-            <svg width="15px" height="15px" viewBox="0 0 24 24" fill="none">
-              <path d="M12 15V3M12 15L8 11M12 15L16 11M21 15V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
         </div>
       </div>
     </div>

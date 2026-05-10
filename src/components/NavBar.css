@@ -66,14 +66,28 @@
 /* Overlay que cubre todo menos la navbar */
 .navbar-overlay {
   position: fixed;
-  top: 60px;
+  top: 0;
   left: 0;
   width: 100vw;
-  height: calc(100vh - 60px);
-  backdrop-filter: blur(1px);
-  z-index: 9;
-  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
   cursor: pointer;
+  animation: overlayFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 }
 
 /* Opcional: si el contenido tiene scroll, evítalo cuando esté abierto */
@@ -95,15 +109,52 @@ body.menu-open {
     align-items: flex-start;
     padding: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    z-index: 1000;
   }
 
   .navbar-list.open {
     display: flex;
+    animation: slideInMenu 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideInMenu {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   .navbar-list li {
     margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .navbar-list.open li {
+    animation: fadeInOption 0.4s ease forwards;
+  }
+
+  @keyframes fadeInOption {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Retrasos escalonados para las opciones */
+  .navbar-list li:nth-child(1) { animation-delay: 0.1s; }
+  .navbar-list li:nth-child(2) { animation-delay: 0.15s; }
+  .navbar-list li:nth-child(3) { animation-delay: 0.2s; }
+  .navbar-list li:nth-child(4) { animation-delay: 0.25s; }
+  .navbar-list li:nth-child(5) { animation-delay: 0.3s; }
+  .navbar-list .theme-switch-container { 
+    opacity: 0;
+    animation: fadeInOption 0.4s ease forwards;
+    animation-delay: 0.35s; 
   }
 
   .navbar-list a {
@@ -126,6 +177,9 @@ body.menu-open {
     background: none;
     outline: none;
     margin-right: 1rem;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    border-radius: 0;
   }
 
   .hamburger-icon {
@@ -135,6 +189,53 @@ body.menu-open {
     /* Color del icono hamburguesa */
     margin: 6px 0;
     transition: 0.4s;
+  }
+
+  /* Efecto Flotante al hacer scroll en móvil */
+  .navbar.scrolled {
+    background-color: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  /* Cuando el menú está abierto, restaurar eventos en toda la navbar */
+  .navbar.scrolled.menu-open-nav,
+  .navbar:has(.navbar-list.open) {
+    pointer-events: auto;
+  }
+
+  .navbar-list.open,
+  .navbar-list.open li,
+  .navbar-list.open a {
+    pointer-events: auto !important;
+  }
+
+  .navbar.scrolled img {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .navbar.scrolled .hamburger-button {
+    pointer-events: auto;
+    background-color: var(--color-bg-secondary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;       /* Más abajo */
+    margin-right: 20px;     /* Más al centro (menos pegado al borde derecho) */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-border);
+  }
+
+  .navbar.scrolled .hamburger-icon {
+    width: 20px;
+    margin: 3px 0;
   }
 
   .hamburger-icon.open:nth-child(1) {

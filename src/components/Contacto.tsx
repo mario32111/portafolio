@@ -101,7 +101,7 @@ const Contacto: FunctionComponent<ContactoProps> = ({ onMouseEnter, onMouseLeave
   };
 
   return (
-    <section id="contacto" className="contacto-section">
+    <section id="contacto" className="contacto-section reveal reveal-contacto">
       <h2 className="contacto-title">Contacto</h2>
       <p className="contacto-subtitle">¿Tienes alguna pregunta o quieres colaborar? ¡Envíame un mensaje!</p>
 

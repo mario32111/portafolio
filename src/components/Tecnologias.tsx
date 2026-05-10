@@ -85,7 +85,7 @@ const Tecnologias: FunctionComponent<TecnologiasProps> = ({ onMouseEnter, onMous
   ];
 
   return (
-    <section id="tecnologias" className="tecnologias-section">
+    <section id="tecnologias" className="tecnologias-section reveal reveal-tecnologias">
       <h2 className="tecnologias-title">Mi Stack Tecnológico</h2>
       <ul className="tecnologias-list">
         {skills.map((skill) => (

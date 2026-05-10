@@ -138,9 +138,13 @@ const NavBar: React.FC<NavBarProps> = ({ isInteractive, onMouseEnterGlobal, onMo
     const handleClick = (href: string, label: string, event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         setActiveItem(label);
-        const sectionElement = document.getElementById(href.toLowerCase());
-        sectionElement?.scrollIntoView({ behavior: 'smooth' });
-        setIsMenuOpen(false);
+        setIsMenuOpen(false); // Cierra el menú primero
+
+        // Espera a que el menú se cierre y el overflow se restaure antes de hacer scroll
+        setTimeout(() => {
+            const sectionElement = document.getElementById(href.toLowerCase());
+            sectionElement?.scrollIntoView({ behavior: 'smooth' });
+        }, 300); // 300ms es suficiente para que el overlay desaparezca
     };
 
     const toggleMenu = () => {

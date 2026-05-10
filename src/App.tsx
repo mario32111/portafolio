@@ -26,6 +26,35 @@ function App() {
     };
   }, []);
 
+  // Forzar que la página siempre inicie en el top al cargar/refrescar
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'; // Desactiva scroll restoration del browser
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  // --- NUEVA LÓGICA DE SCROLL REVEAL ---
+  useEffect(() => {
+    const revealCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(revealCallback, {
+      threshold: 0.15, // Se activa cuando el 15% del elemento es visible
+    });
+
+    const elements = document.querySelectorAll('.reveal');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+  // --- FIN LÓGICA SCROLL REVEAL ---
+
   const handleMouseEnterGlobal = useCallback(() => {
     setIsInteractiveGlobal(true);
   }, []);

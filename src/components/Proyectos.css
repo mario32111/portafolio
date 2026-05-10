@@ -1,12 +1,17 @@
 /* Proyectos.css */
 
 .proyectos-section {
-  padding: 1.5rem 1rem;
+  padding: 6rem 1rem;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   text-align: center;
   position: relative;
   overflow: hidden;
+  /* Evita desbordamiento por animaciones 3D */
 }
 
 .proyectos-title {
@@ -86,7 +91,8 @@
 
 .proyecto-image {
   width: 100%;
-  height: 250px; /* Aumentado para mayor visibilidad */
+  height: 250px;
+  /* Aumentado para mayor visibilidad */
   object-fit: cover;
   transition: transform 0.5s ease;
 }
@@ -235,20 +241,28 @@
 
 @media (max-width: 767px) {
   .proyectos-section {
-    padding: 4rem 1rem;
+    padding: 2rem 0;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: visible; /* Permitir que el slider se desborde para scroll */
   }
 
-  .proyectos-title {
-    font-size: 2.2rem;
+  .proyectos-slider-container {
+    padding: 0; /* Sin padding lateral para que el slider use todo el ancho */
+    width: 100%;
+    overflow: hidden; /* Solo clip visual, no bloquea el scroll del hijo */
   }
 
   .proyecto-card {
-    flex: 0 0 280px;
-    /* Un poco más angosto para asegurar que se vean los bordes */
+    flex: 0 0 78vw; /* ~80% de la pantalla para que solo se vea 1 proyecto */
   }
 
   .proyecto-image {
-    height: 180px; /* También un poco más grande en móvil */
+    height: 180px;
+    /* También un poco más grande en móvil */
   }
 
   .proyecto-content {
@@ -296,8 +310,20 @@
 
   .proyectos-slider {
     mask-image: none;
-    padding: 1.5rem calc(50% - 140px);
-    gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    padding-right: 22vw; /* Espacio para que el último card llegue al inicio */
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x pan-y; /* Horizontal: desliza el slider. Vertical: scroll de página */
+    -webkit-overflow-scrolling: touch; /* Scroll momentum en iOS */
+    overflow-x: scroll; /* Forzar scroll en el slider */
+  }
+
+  .proyecto-card {
+    scroll-snap-align: start; /* En móvil snapping por inicio, no centro */
+    transform: none !important; /* Desactiva el scale activo/inactivo en móvil */
+    opacity: 1 !important;
+    filter: none !important;
   }
 }
 

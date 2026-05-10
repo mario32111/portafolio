@@ -9,6 +9,7 @@ import p2 from "../assets/p2.jpg";
 import p3 from "../assets/p3.jpg";
 import p4 from "../assets/p4.jpg";
 import p5 from "../assets/p5.png";
+import p6 from "../assets/p6.jpg";
 import p7 from "../assets/p7.png";
 
 // Definimos las props que Proyectos espera de su padre (App.tsx)
@@ -52,7 +53,7 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
     {
       title: "AgroControlPro – Monitoreo y trazabilidad ganadera",
       description: "Proyecto ganador de mención honorífica en el galardón DuranIA 2026. Sistema integral de monitoreo y trazabilidad ganadera mediante sensores IoT y Computer Vision. Implementación de modelos para el conteo automatizado de ganado y análisis de postura (detección de ejemplares en pie o echados) para evaluar el bienestar animal. Incluye algoritmos de Machine Learning para detección de fiebre/celo y un Agente de IA para la automatización de procesos administrativos y analisis de documentos.",
-      techniques: ["React", "TypeScript", "PostgreSQL", "Express", "Sequelize"],
+      techniques: ["Flutter", "Dart", "Firebase", "Node.js", "PostgreSQL", "Python", "Azure", "Computer Vision", "Machine Learning"],
       imageUrl: p4,
       githubUrls: [
         { name: "Repositorio", url: "https://github.com/mario32111/ProyectoGalardonDurania.git" },
@@ -63,7 +64,7 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
       title: "FocusTrack - Monitoreo de habitos al conducir",
       description: "Deteccion de fatiga, somnolencia y posibles distracciones al conducir, notificaciones a contactos de confianza, agenda de viajes. Transmision de datos en tiempo real mediante MQTT a un broker en la nube",
       techniques: ["Flutter", "Dart", "Nest.js", "Next.js", "Docker", "PostgreSQL", "Redis", "TypeScript", "Azure", "MQTT", "Python"],
-      imageUrl: p2,
+      imageUrl: p6,
       githubUrls: [
         { name: "Repositorio", url: "https://github.com/mario32111/FocusTrackBackend.git" }
       ],
@@ -135,7 +136,7 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
   const interactiveClass = (!isMobile && isInteractive) ? 'interactive-element-hovered' : '';
 
   return (
-    <section id="proyectos" className="proyectos-section">
+    <section id="proyectos" className="proyectos-section reveal reveal-proyectos">
       <h2 className="proyectos-title">Proyectos Destacados</h2>
 
       <div className="proyectos-slider-container">

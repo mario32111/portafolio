@@ -35,12 +35,20 @@
   --color-accent-rgb: 74, 222, 128;
 }
 
-body {
+html {
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
+  margin: 0;
 }
 
 

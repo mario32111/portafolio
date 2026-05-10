@@ -142,42 +142,52 @@
 
 @media (max-width: 767px) {
   .contacto-section {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
   }
 
   .contacto-title {
-    font-size: 2em;
-    margin-bottom: 1rem;
+    font-size: 1.8em;
+    margin-bottom: 0.6rem;
   }
 
   .contacto-subtitle {
-    font-size: 1em;
-    margin-bottom: 2rem;
+    font-size: 0.95em;
+    margin-bottom: 1.2rem;
   }
 
   .contacto-form {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
 
   .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
 
   .form-label {
-    font-size: 0.95em;
-    margin-bottom: 0.4rem;
+    font-size: 0.9em;
+    margin-bottom: 0.3rem;
   }
 
   .form-input,
   .form-textarea {
-    padding: 0.7rem 0.8rem;
-    font-size: 0.95em;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9em;
+  }
+
+  .form-textarea {
+    min-height: 70px;
   }
 
   .submit-button {
-    font-size: 1em;
-    padding: 0.8rem 1.5rem;
-    max-width: 100%; /* El botón ocupa todo el ancho en pantallas pequeñas */
+    font-size: 0.95em;
+    padding: 0.7rem 1.2rem;
+    margin-top: 0.8rem;
+    max-width: 100%;
   }
 }
 

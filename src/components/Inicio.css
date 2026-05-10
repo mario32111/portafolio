@@ -151,14 +151,17 @@
 }
 
 /* --- NUEVOS ESTILOS PARA LOS ENLACES SOCIALES EN INICIO --- */
+.inicio-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
 .social-links-inicio {
   display: flex;
   gap: 1.5rem;
-  /* Espacio entre los íconos */
-  margin-top: 1.5rem;
-  /* Espacio superior para separarlo del texto */
-  margin-bottom: 1.5rem;
-  /* Espacio inferior para separarlo del botón */
 }
 
 .social-icon-link-inicio {
@@ -191,8 +194,7 @@
   align-items: center;
   gap: 10px;
   padding: 0.8em 1.8em;
-  margin-top: 1.5rem;
-  /* Ajustado para que quede debajo de los enlaces */
+  /* margin-top removido para alineación horizontal */
   border: none;
   border-radius: 4px;
   background-color: var(--color-bg-primary);
@@ -272,53 +274,64 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .container-inicio {
+  .inicio-wrapper {
+    width: 100vw;
+    padding: 0.5rem 1rem;
+    padding-top: 60px; /* 60px navbar + 12px separación */
+    box-sizing: border-box;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Pegado arriba, no centrado */
+    overflow-x: hidden;
+  }
+
+  .container-inicio {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
-  .typing-animation-container {
-    align-items: center;
-    /* Centra el texto y los enlaces en móviles */
+  .foto-container {
+    width: 260px;
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
+    margin-top: 0; /* Sin margen superior para quedar cerca del navbar */
   }
 
   .inicio-foto {
-    max-width: 300px;
+    width: 260px;
+    max-width: 260px;
+    min-width: unset;
+    display: block;
   }
 
-  .typing-animation {
-    white-space: normal;
+  .marco-foto {
+    display: block; /* Restaurar el marco */
+    top: -10px;
+    left: -10px;
   }
 
-  .social-links-inicio {
-    justify-content: center;
-    /* Centra los íconos en móviles */
-    gap: 1rem;
-    /* Menor espacio entre íconos */
-  }
-
-  .social-icon-link-inicio svg {
-    size: 28px;
-    /* Íconos un poco más pequeños en móviles */
-  }
-}
-
-@media (max-width: 480px) {
-  .inicio-wrapper {
-    padding: 1rem;
+  .typing-animation-container {
+    width: 100%;
+    align-items: center;
+    text-align: center;
   }
 
   .name {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 8vw, 3rem);
   }
 
   .typing-animation {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 5vw, 2rem);
+    white-space: normal;
   }
 
-  .cv-button {
-    padding: 0.7em 1.2em;
-    font-size: 0.9rem;
+  .inicio-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 }
 

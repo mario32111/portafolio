@@ -43,7 +43,7 @@ const SobreMi: FunctionComponent<SobreMiProps> = ({ onMouseEnter, onMouseLeave, 
   ];
 
   return (
-    <section id="sobre-mi" className="sobre-mi-section">
+    <section id="sobre-mi" className="sobre-mi-section reveal reveal-sobre-mi">
       <h2 className="sobre-mi-title">Sobre Mí</h2>
       <div className="sobre-mi-content">
         {/* Sección: Quién Soy */}
@@ -68,7 +68,6 @@ const SobreMi: FunctionComponent<SobreMiProps> = ({ onMouseEnter, onMouseLeave, 
           <p>
             ¡Estoy entusiasmado por seguir creciendo y contribuir a proyectos que marquen la diferencia!
           </p>
-
         </div>
 
         {/* Sección: Soft Skills */}
