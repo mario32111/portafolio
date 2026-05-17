@@ -103,6 +103,16 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
       ],
       liveUrl: "https://art-challange.web.app/",
     },
+    {
+      title: "SAI -  Agente conversacional para atencion de emergencias",
+      description: "Sistema de atencion de emergencias, con el fin de identificar llamadas falsas y dar prioridad a las llamadas reales para la mejor gestion de recursos de emergencia",
+      techniques: ["Express", "React", "Firebase", "JavaScript", "TwilioAPI", "Python"],
+      imageUrl: p7,
+      githubUrls: [
+        { name: "Repositorio", url: "https://github.com/mario32111/ProyectoDevCodeChallange.git" },
+      ],
+      liveUrl: null,
+    },
   ];
 
   const scroll = (direction: 'left' | 'right') => {
