@@ -2,7 +2,7 @@
 import { useState, useEffect, type FunctionComponent } from "react";
 import "./Inicio.css";
 import foto from '../assets/yo.jpg';
-import cvFile from '../assets/MarioGarcia_CV_2026.pdf';
+import cvFile from '../assets/CV_MarioAlbertoGarciaEstevane.pdf';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
@@ -109,7 +109,7 @@ const Inicio: FunctionComponent<InicioProps> = ({ onMouseEnter, onMouseLeave, is
 
             <a
               href={cvFile}
-              download="MarioGarcia_CV_2026.pdf"
+              download="CV_MarioAlbertoGarciaEstevane.pdf"
               className={`cv-button ${interactiveElementClass}`}
               onMouseEnter={!isMobile ? onMouseEnter : undefined} // ¡Desactivamos en móvil!
               onMouseLeave={!isMobile ? onMouseLeave : undefined} // ¡Desactivamos en móvil!
