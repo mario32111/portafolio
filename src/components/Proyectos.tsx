@@ -11,6 +11,7 @@ import p4 from "../assets/p4.jpg";
 import p5 from "../assets/p5.png";
 import p6 from "../assets/p6.jpg";
 import p7 from "../assets/p7.png";
+import p8 from "../assets/p8.png";
 
 // Definimos las props que Proyectos espera de su padre (App.tsx)
 interface ProyectosProps {
@@ -105,9 +106,9 @@ const Proyectos: FunctionComponent<ProyectosProps> = ({ onMouseEnter, onMouseLea
     },
     {
       title: "SAI -  Agente conversacional para atencion de emergencias",
-      description: "Sistema de atencion de emergencias, con el fin de identificar llamadas falsas y dar prioridad a las llamadas reales para la mejor gestion de recursos de emergencia",
+      description: "Sistema de atencion de emergencias desarollado en el devCodeChallange 2025, con el fin de identificar llamadas falsas y dar prioridad a las llamadas reales para la mejor gestion de recursos de emergencia",
       techniques: ["Express", "React", "Firebase", "JavaScript", "TwilioAPI", "Python"],
-      imageUrl: p7,
+      imageUrl: p8,
       githubUrls: [
         { name: "Repositorio", url: "https://github.com/mario32111/ProyectoDevCodeChallange.git" },
       ],
